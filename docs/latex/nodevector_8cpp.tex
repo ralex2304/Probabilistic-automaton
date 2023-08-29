@@ -1,0 +1,193 @@
+\doxysection{nodevector.\+cpp File Reference}
+\hypertarget{nodevector_8cpp}{}\label{nodevector_8cpp}\index{nodevector.cpp@{nodevector.cpp}}
+{\ttfamily \#include \"{}nodevector.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}{vec\+\_\+ctor}} (\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}vec)
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_node_vector}{Node\+Vector} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2}{vec\+\_\+detor}} (\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}vec)
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_node_vector}{Node\+Vector} destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}{vec\+\_\+realloc}} (\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}vec, size\+\_\+t new\+\_\+size)
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_node_vector}{Node\+Vector} memory reallocation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f}{vec\+\_\+push}} (\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}vec, \mbox{\hyperlink{struct_node}{Node}} elem)
+\begin{DoxyCompactList}\small\item\em Push to \doxylink{struct_node_vector}{Node\+Vector}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}\label{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad} 
+\index{nodevector.cpp@{nodevector.cpp}!vec\_ctor@{vec\_ctor}}
+\index{vec\_ctor@{vec\_ctor}!nodevector.cpp@{nodevector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_ctor()}{vec\_ctor()}}
+{\footnotesize\ttfamily bool vec\+\_\+ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}}]{vec }\end{DoxyParamCaption})}
+
+
+
+\doxylink{struct_node_vector}{Node\+Vector} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{nodevector_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{nodevector_8cpp_source}{nodevector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ (\mbox{\hyperlink{struct_node}{Node}}*)calloc(vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00008\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{nodevector_8h_source_l00015}{Node\+Vector\+::arr}}, and \mbox{\hyperlink{nodevector_8h_source_l00012}{Node\+Vector\+::capacity}}.
+
+
+
+Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00032}{auto\+\_\+write\+\_\+node()}}, and \mbox{\hyperlink{main_8cpp_source_l00008}{main()}}.
+
+\Hypertarget{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2}\label{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2} 
+\index{nodevector.cpp@{nodevector.cpp}!vec\_detor@{vec\_detor}}
+\index{vec\_detor@{vec\_detor}!nodevector.cpp@{nodevector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_detor()}{vec\_detor()}}
+{\footnotesize\ttfamily void vec\+\_\+detor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}}]{vec }\end{DoxyParamCaption})}
+
+
+
+\doxylink{struct_node_vector}{Node\+Vector} destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{nodevector_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{nodevector_8cpp_source}{nodevector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ free(vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}});}
+\DoxyCodeLine{00012\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00013\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ =\ 0;}
+\DoxyCodeLine{00014\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{nodevector_8h_source_l00015}{Node\+Vector\+::arr}}, and \mbox{\hyperlink{nodevector_8h_source_l00012}{Node\+Vector\+::capacity}}.
+
+
+
+Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00101}{auto\+\_\+detor()}}.
+
+\Hypertarget{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f}\label{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f} 
+\index{nodevector.cpp@{nodevector.cpp}!vec\_push@{vec\_push}}
+\index{vec\_push@{vec\_push}!nodevector.cpp@{nodevector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_push()}{vec\_push()}}
+{\footnotesize\ttfamily bool vec\+\_\+push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{\mbox{\hyperlink{struct_node}{Node}}}]{elem }\end{DoxyParamCaption})}
+
+
+
+Push to \doxylink{struct_node_vector}{Node\+Vector}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em elem} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{nodevector_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{nodevector_8cpp_source}{nodevector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}}\ >=\ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ \&\&}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}{vec\_realloc}}(vec,\ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ *\ 2))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[vec-\/>\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}}++]\ =\ elem;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{nodevector_8h_source_l00015}{Node\+Vector\+::arr}}, \mbox{\hyperlink{nodevector_8h_source_l00012}{Node\+Vector\+::capacity}}, \mbox{\hyperlink{nodevector_8h_source_l00013}{Node\+Vector\+::size}}, and \mbox{\hyperlink{nodevector_8cpp_source_l00016}{vec\+\_\+realloc()}}.
+
+
+
+Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00032}{auto\+\_\+write\+\_\+node()}}.
+
+\Hypertarget{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}\label{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f} 
+\index{nodevector.cpp@{nodevector.cpp}!vec\_realloc@{vec\_realloc}}
+\index{vec\_realloc@{vec\_realloc}!nodevector.cpp@{nodevector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_realloc()}{vec\_realloc()}}
+{\footnotesize\ttfamily bool vec\+\_\+realloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node_vector}{Node\+Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{size\+\_\+t}]{new\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+\doxylink{struct_node_vector}{Node\+Vector} memory reallocation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em new\+\_\+size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{nodevector_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{nodevector_8cpp_source}{nodevector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}*\ ptr\ =\ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ (\mbox{\hyperlink{struct_node}{Node}}*)realloc(vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}},\ new\_size\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ free(ptr);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ =\ new\_size;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00027\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{nodevector_8h_source_l00015}{Node\+Vector\+::arr}}, and \mbox{\hyperlink{nodevector_8h_source_l00012}{Node\+Vector\+::capacity}}.
+
+
+
+Referenced by \mbox{\hyperlink{nodevector_8cpp_source_l00029}{vec\+\_\+push()}}.
+

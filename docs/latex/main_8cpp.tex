@@ -1,0 +1,89 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include \"{}nodevector.\+h\"{}}\newline
+{\ttfamily \#include \"{}automaton\+\_\+parser.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{int}\ LEVEL\ =\ 3;}
+\DoxyCodeLine{00010\ \ \ \ \ ssize\_t\ cnt\ =\ 1000;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Max\ automaton\ level\ and\ symbols\ count\ isn't\ specified.\ Autoset\ level\ to\ 5\ and\ 1000\(\backslash\)n"{}});}
+\DoxyCodeLine{00013\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (argc\ >\ 3)\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Wrong\ console\ arguments.\ Exiting\(\backslash\)n"{}});}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00016\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sscanf(argv[1],\ \textcolor{stringliteral}{"{}\%d"{}},\ \&LEVEL)\ !=\ 1)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Wrong\ console\ argument.\ Specify\ max\ automaton\ level\(\backslash\)n"{}});}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sscanf(argv[2],\ \textcolor{stringliteral}{"{}\%lld"{}},\ \&cnt)\ !=\ 1)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Wrong\ console\ argument.\ Specify\ symbols\ count\(\backslash\)n"{}});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ FILE*\ file\ =\ fopen(\textcolor{stringliteral}{"{}text.txt"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{struct_nodes}{Nodes}}\ nodes\ =\ \{\};}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}{vec\_ctor}}(\&nodes.\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_ac807f28eeaaeeba0ad93eaf57f731ba4}{auto\_parse}}(file,\ \&nodes,\ LEVEL);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{char}\ str[10]\ =\ \{\};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ level\ \%d\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}},\ LEVEL);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{auto\_get\_node}}(\&nodes,\ str,\ 0,\ 0,\ LEVEL);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ downgrade\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ LEVEL;\ i++)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ str[i]\ =\ str[i\ +\ 1];}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{auto\_get\_node}}(\&nodes,\ str,\ 0,\ LEVEL,\ LEVEL)\ \&\&\ -\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ downgrade++;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LEVEL\ <\ downgrade)\ downgrade\ =\ LEVEL;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{auto\_get\_node}}(\&nodes,\ str,\ 0,\ LEVEL\ -\/\ downgrade,\ LEVEL);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%c"{}},\ str[0]);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ LEVEL;\ i++)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str[i]\ =\ str[i\ +\ 1];}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%c"{}},\ str[0]);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ downgrade\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ stop\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\&nodes);}
+\DoxyCodeLine{00063\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{automaton__parser_8cpp_source_l00101}{auto\+\_\+detor()}}, \mbox{\hyperlink{automaton__parser_8cpp_source_l00082}{auto\+\_\+get\+\_\+node()}}, \mbox{\hyperlink{automaton__parser_8cpp_source_l00004}{auto\+\_\+parse()}}, \mbox{\hyperlink{nodevector_8h_source_l00023}{Nodes\+::vec}}, and \mbox{\hyperlink{nodevector_8cpp_source_l00003}{vec\+\_\+ctor()}}.
+

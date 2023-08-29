@@ -1,0 +1,43 @@
+\doxysection{nodevector.\+cpp}
+\hypertarget{nodevector_8cpp_source}{}\label{nodevector_8cpp_source}\mbox{\hyperlink{nodevector_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nodevector_8h}{nodevector.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00003}\mbox{\hyperlink{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}{00003}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}{vec\_ctor}}(\mbox{\hyperlink{struct_node_vector}{NodeVector}}*\ vec)\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00004}00004\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ (\mbox{\hyperlink{struct_node}{Node}}*)calloc(vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00006}00006\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00010}\mbox{\hyperlink{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2}{vec\_detor}}(\mbox{\hyperlink{struct_node_vector}{NodeVector}}*\ vec)\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00011}00011\ \ \ \ \ free(vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}});}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00012}00012\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00013}00013\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00016}\mbox{\hyperlink{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}{00016}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}{vec\_realloc}}(\mbox{\hyperlink{struct_node_vector}{NodeVector}}*\ vec,\ \textcolor{keywordtype}{size\_t}\ new\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}*\ ptr\ =\ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00019}00019\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ =\ (\mbox{\hyperlink{struct_node}{Node}}*)realloc(vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}},\ new\_size\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}}));}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ free(ptr);}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00025}00025\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ =\ new\_size;}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00029}\mbox{\hyperlink{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f}{00029}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f}{vec\_push}}(\mbox{\hyperlink{struct_node_vector}{NodeVector}}*\ vec,\ \mbox{\hyperlink{struct_node}{Node}}\ elem)\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}}\ >=\ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ \&\&}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{nodevector_8cpp_aba4555a006cff157f1f82b582237ab5f}{vec\_realloc}}(vec,\ vec-\/>\mbox{\hyperlink{struct_node_vector_a12d6ba48c5566c3190c56a86ec1d1b57}{capacity}}\ *\ 2))\ \{}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00035}00035\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[vec-\/>\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}}++]\ =\ elem;}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{nodevector_8cpp_source_l00038}00038\ \}}
+
+\end{DoxyCode}

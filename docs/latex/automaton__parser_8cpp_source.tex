@@ -1,0 +1,111 @@
+\doxysection{automaton\+\_\+parser.\+cpp}
+\hypertarget{automaton__parser_8cpp_source}{}\label{automaton__parser_8cpp_source}\mbox{\hyperlink{automaton__parser_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{automaton__parser_8h}{automaton\_parser.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00004}\mbox{\hyperlink{automaton__parser_8cpp_ac807f28eeaaeeba0ad93eaf57f731ba4}{00004}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{automaton__parser_8cpp_ac807f28eeaaeeba0ad93eaf57f731ba4}{auto\_parse}}(FILE*\ file,\ \mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{char}*\ bef\ =\ (\textcolor{keywordtype}{char}*)calloc((max\_level\ +\ 2),\ \textcolor{keyword}{sizeof}(char));}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keywordflow}{if}\ (bef\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00007}00007\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_parse():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00009}00009\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{int}\ ch\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{int}\ begin\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{while}\ ((ch\ =\ getc(file))\ !=\ EOF)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ (!isalpha(ch)\ \&\&\ !isdigit(ch)\ \&\&\ !isspace(ch))\ continue;}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ max\_level;\ i++)}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ bef[i]\ =\ bef[i\ +\ 1];}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ bef[max\_level]\ =\ (char)ch;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ <\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ begin++;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a31699bd4c1fd776b750ef0521045b409}{auto\_write\_node}}(nodes,\ bef,\ 0,\ max\_level);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00029}00029\ \ \ \ \ free(bef);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00030}00030\ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00032}\mbox{\hyperlink{automaton__parser_8cpp_a31699bd4c1fd776b750ef0521045b409}{00032}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{automaton__parser_8cpp_a31699bd4c1fd776b750ef0521045b409}{auto\_write\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00033}00033\ \ \ \ \ nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}}++;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a60b3924d995a47df096d90f9a926d7ba}{ch}}\ ==\ str[level])}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}})\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ new\_node\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a60b3924d995a47df096d90f9a926d7ba}{ch}}\ =\ str[level];}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nodevector_8cpp_a6d4b916f8c750489cc5e72ecadf431ad}{vec\_ctor}}(\&new\_node.\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}}.\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}});}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{nodevector_8cpp_a65eecbe26219097fca0d2f66d41b0e2f}{vec\_push}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}},\ new\_node))\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_write\_node():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00051}00051\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}}++;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a31699bd4c1fd776b750ef0521045b409}{auto\_write\_node}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}},\ str,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00061}\mbox{\hyperlink{automaton__parser_8cpp_a2a1d86b2b2831c9b46bdc47656258081}{00061}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{automaton__parser_8cpp_a2a1d86b2b2831c9b46bdc47656258081}{auto\_generate\_rand\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}*\ str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{static}\ std::random\_device\ rd;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Mersenne\ twister\ PRNG,\ initialized\ with\ seed\ from\ previous\ random\ device\ instance}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{static}\ std::mt19937\ gen(rd());}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00067}00067\ \ \ \ \ std::uniform\_int\_distribution<unsigned\ long\ long>\ rand\_normal\ \{0,\ nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}}\};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ r\ =\ (\textcolor{keywordtype}{long}\ long)rand\_normal(gen);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ r\ -\/=\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ str[level]\ =\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a60b3924d995a47df096d90f9a926d7ba}{ch}};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ max\_level)}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a2a1d86b2b2831c9b46bdc47656258081}{auto\_generate\_rand\_node}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}},\ str,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00080}00080\ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00082}\mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{00082}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{auto\_get\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}*\ str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rand\_max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_a2a1d86b2b2831c9b46bdc47656258081}{auto\_generate\_rand\_node}}(nodes,\ str,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a60b3924d995a47df096d90f9a926d7ba}{ch}}\ ==\ str[level])}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}})\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{automaton__parser_8cpp_a334cd4969654023820da8351aa01a76e}{auto\_get\_node}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}},\ str,\ level\ +\ 1,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00099}00099\ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00101}\mbox{\hyperlink{automaton__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{00101}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{automaton__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a9278d5292edc086c10f94f5b14eabab0}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{automaton__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}}.\mbox{\hyperlink{struct_node_vector_a1272f26014979cd8ee625b1762fc0e11}{arr}}[i].\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}});}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00105}00105\ \ \ \ \ \mbox{\hyperlink{nodevector_8cpp_ab4cb9e808e79d817d01b773d398c34e2}{vec\_detor}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a7ae82e1c28cf810a937bbf29acebad31}{vec}});}
+\DoxyCodeLine{\Hypertarget{automaton__parser_8cpp_source_l00106}00106\ \}}
+
+\end{DoxyCode}

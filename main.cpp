@@ -28,7 +28,10 @@ struct StrBuf {
 void speak_add(StrBuf* buf, char ch);
 
 int main(int argc, char* argv[]) {
-    int level = 3;
+
+    txDisableAutoPause();
+
+    int level = 8;
     ssize_t cnt = 1000;
     char* filename = nullptr;
     bool voice = false;
@@ -37,7 +40,7 @@ int main(int argc, char* argv[]) {
     if (args_parse_res != Status::NORMAL_WORK)
         return Status::raise(args_parse_res);
 
-    FILE* file = fopen("text.txt", "r");
+    FILE* file = fopen(filename, "r");
     if (file == nullptr) {
         printf("Error opening text file\n");
         return Status::raise(Status::FILE_ERROR);

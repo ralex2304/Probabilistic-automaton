@@ -2,9 +2,31 @@
 #define AUTOMATON_PARSER_H_
 
 #include <stdio.h>
+#include <assert.h>
 #include <random>
 
 #include "nodevector.h"
+
+/**
+ * @brief Specifies functions status
+ */
+struct Status {
+    enum Statuses {
+        NO_ERR     = -2,  ///< Poison value
+        NORMAL_WORK  = -1,  ///< Normal mode system value (isn't returned in main())
+        OK_EXIT      =  0,  ///< OK
+        ARGS_ERROR   =  1,  ///< Console arguments error
+        FILE_ERROR   =  2,  ///< File opening or reading error
+    };
+
+    /**
+     * @brief Prints and returns given status
+     *
+     * @param[in] status
+     * @return Statuses
+     */
+    static Statuses raise(const Statuses status);
+};
 
 /**
  * @brief Parses text from file

@@ -98,7 +98,7 @@ void speak_add(StrBuf* buf, char ch) {
     buf->str[buf->size++] = ch;
     if (buf->size >= buf->capacity - 1 || buf->str[buf->size - 1] == '\n') {
         buf->str[buf->size] = '\0';
-        txSpeak(buf->str);
+        txSpeak("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='EN'>%s</speak>", buf->str);
         buf->size = 0;
     }
 }

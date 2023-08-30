@@ -1,7 +1,7 @@
 #include "args_parser.h"
 
 Status::Statuses args_parse(int argc, char* argv[],
-                            int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                            int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     assert(argv);
     assert(argc);
     assert(auto_level);
@@ -63,7 +63,7 @@ Status::Statuses args_parse(int argc, char* argv[],
 
 ArgsMode print_help(const Argument args_dict[], const int args_dict_len,
                     int* arg_i, const int argc, char* argv[],
-                    int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                    int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     (void) auto_level;
     (void) output_cnt;
     (void) filename;
@@ -90,7 +90,7 @@ ArgsMode print_help(const Argument args_dict[], const int args_dict_len,
 
 ArgsMode set_level(const Argument args_dict[], const int args_dict_len,
                    int* arg_i, const int argc, char* argv[],
-                   int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                   int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     (void) args_dict;
     (void) args_dict_len;
     (void) output_cnt;
@@ -115,7 +115,7 @@ ArgsMode set_level(const Argument args_dict[], const int args_dict_len,
 
 ArgsMode set_symb_num(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     (void) args_dict;
     (void) args_dict_len;
     (void) auto_level;
@@ -140,7 +140,7 @@ ArgsMode set_symb_num(const Argument args_dict[], const int args_dict_len,
 
 ArgsMode set_filename(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     (void) args_dict;
     (void) args_dict_len;
     (void) auto_level;
@@ -166,7 +166,7 @@ ArgsMode set_filename(const Argument args_dict[], const int args_dict_len,
 
 ArgsMode enable_voice(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice) {
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice) {
     (void) args_dict;
     (void) args_dict_len;
     (void) arg_i;

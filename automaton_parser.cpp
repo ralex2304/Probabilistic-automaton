@@ -1,64 +1,56 @@
 #include "automaton_parser.h"
 
+bool auto_parse(Vector* tokens, Nodes* nodes, int max_level) {
+    assert(tokens);
+    assert(nodes);
 
-void auto_parse(FILE* file, Nodes* nodes, const int max_level) {
-    char* bef = (char*)calloc((max_level + 2), sizeof(char));
-    if (bef == nullptr) {
-        printf("auto_parse(): Memory alloc error\n");
-        return;
+    for (size_t i = 0; i < tokens->size - max_level; i++) {
+        if (!auto_write_node(nodes, (char**)(tokens->arr) + i, 0, max_level))
+            return false;
     }
-
-    int ch = '\0';
-    int begin = 0;
-    while ((ch = getc(file)) != EOF) {
-        //if (!isalpha(ch) && !isdigit(ch) && !isspace(ch)) continue;
-
-        for (ssize_t i = 0; i < max_level; i++)
-            bef[i] = bef[i + 1];
-
-        bef[max_level] = (char)ch;
-
-        if (begin < max_level) {
-            begin++;
-            continue;
-        }
-
-        auto_write_node(nodes, bef, 0, max_level);
-
-    }
-    free(bef);
+    return true;
 }
 
-void auto_write_node(Nodes* nodes, const char* str, const unsigned int level, const unsigned int max_level) {
+bool auto_write_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level) {
     nodes->all_cnt++;
 
     size_t i = 0;
+    size_t token_len = strlen(tokens_arr[level]);
+
     for (i = 0; i < nodes->vec.size; i++) {
-        if (nodes->vec.arr[i].ch == str[level])
-            break;
+        size_t node_token_len = strlen(((Node*)vec_get(&nodes->vec, i))->token);
+
+        if (node_token_len == token_len &&
+            ((Node*)vec_get(&nodes->vec,i))->hash == MurmurHash2A(tokens_arr[level], (int)token_len) &&
+            strncmp(((Node*)vec_get(&nodes->vec, i))->token, tokens_arr[level], node_token_len))
+                break;
     }
 
     if (i == nodes->vec.size) {
         Node new_node = {};
-        new_node.ch = str[level];
+        new_node.token = tokens_arr[level];
+        new_node.hash = MurmurHash2A(new_node.token, (int)token_len);
         new_node.cnt = 1;
-        vec_ctor(&new_node.children.vec);
-
-        if(!vec_push(&nodes->vec, new_node)) {
+        if (!vec_ctor(&new_node.children.vec, sizeof(Node))) {
             printf("auto_write_node(): Memory alloc error\n");
-            return;
+            return false;
+        }
+
+        if(!vec_push(&nodes->vec, &new_node)) {
+            printf("auto_write_node(): Memory alloc error\n");
+            return false;
         }
     } else {
-        nodes->vec.arr[i].cnt++;
+        ((Node*)vec_get(&nodes->vec, i))->cnt++;
     }
 
     if (level == max_level)
-        return;
+        return true;
 
-    auto_write_node(&nodes->vec.arr[i].children, str, level + 1, max_level);
+    return auto_write_node(&((Node*)vec_get(&nodes->vec, i))->children, tokens_arr, level + 1, max_level);
 }
 
-void auto_generate_rand_node(Nodes* nodes, char* str, const unsigned int level, const unsigned int max_level) {
+void auto_generate_rand_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level) {
     static std::random_device rd;
 
     // Mersenne twister PRNG, initialized with seed from previous random device instance
@@ -68,39 +60,50 @@ void auto_generate_rand_node(Nodes* nodes, char* str, const unsigned int level, 
 
     long long r = (long long)rand_normal(gen);
     for (size_t i = 0; i < nodes->vec.size; i++) {
-        r -= nodes->vec.arr[i].cnt;
-        if (r < 0) {
-            str[level] = nodes->vec.arr[i].ch;
+        r -= ((Node*)vec_get(&nodes->vec, i))->cnt;
+        if (r <= 0) {
+            tokens_arr[level] = ((Node*)vec_get(&nodes->vec, i))->token;
 
             if (level < max_level)
-                auto_generate_rand_node(&nodes->vec.arr[i].children, str, level + 1, max_level);
-            break;
+                auto_generate_rand_node(&((Node*)vec_get(&nodes->vec, i))->children, tokens_arr, level + 1, max_level);
+            return;
         }
     }
+    assert(0 && "Rand node generate error");
 }
 
-bool auto_get_node(Nodes* nodes, char* str, const unsigned int level, const unsigned int max_level, const unsigned int rand_max_level) {
+bool auto_get_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level, const unsigned int rand_max_level) {
+    assert(nodes);
+    assert(tokens_arr);
+
 
     if (level == max_level) {
-        auto_generate_rand_node(nodes, str, max_level, rand_max_level);
+        auto_generate_rand_node(nodes, tokens_arr, max_level, rand_max_level);
         return true;
     }
 
     size_t i = 0;
+    char* token = tokens_arr[level];
+    size_t token_len = strlen(token);
+
     for (i = 0; i < nodes->vec.size; i++) {
-        if (nodes->vec.arr[i].ch == str[level])
-            break;
+        size_t node_token_len = strlen(((Node*)vec_get(&nodes->vec, i))->token);
+
+        if (node_token_len == token_len &&
+            ((Node*)vec_get(&nodes->vec, i))->hash == MurmurHash2A(token, (int)token_len) &&
+            strncmp(((Node*)vec_get(&nodes->vec, i))->token, token, node_token_len))
+                break;
     }
 
     if (i == nodes->vec.size) {
         return false;
     }
-    return auto_get_node(&nodes->vec.arr[i].children, str, level + 1, max_level, rand_max_level);
+    return auto_get_node(&((Node*)vec_get(&nodes->vec, i))->children, tokens_arr, level + 1, max_level, rand_max_level);
 }
 
 void auto_detor(Nodes* nodes) {
     for (size_t i = 0; i < nodes->vec.size; i++) {
-        auto_detor(&nodes->vec.arr[i].children);
+        auto_detor(&((Node*)vec_get(&nodes->vec, i))->children);
     }
     vec_detor(&nodes->vec);
 }
@@ -116,6 +119,8 @@ Status::Statuses Status::raise(const Statuses status) {
         case FILE_ERROR:
             printf("Exiting. File error\n");
             break;
+        case MEMORY_EXCEED:
+            printf("Exiting. Not enough memory\n");
         case OK_EXIT:
         case NO_ERR:
             break;
@@ -125,3 +130,12 @@ Status::Statuses Status::raise(const Statuses status) {
     };
     return status;
 }
+
+/*void speak_add(Vector* buf, char* add_token) {
+    buf->str[buf->size++] = ch;
+    if (buf->size >= buf->capacity - 1 || buf->str[buf->size - 1] == '\n') {
+        buf->str[buf->size] = '\0';
+        //txSpeak("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='EN'>%s</speak>", buf->str);
+        buf->size = 0;
+    }
+}*/

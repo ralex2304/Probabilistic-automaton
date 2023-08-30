@@ -20,7 +20,7 @@ struct Argument; // forward declaration
 
 typedef ArgsMode (*args_func)(const Argument args_dict[], const int args_dict_len,
          int* arg_i, const int argc, char* argv[],
-         int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+         int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Specifies console argument parametres: name, function and description
@@ -44,7 +44,7 @@ struct Argument {
  * @return Status::Statuses
  */
 Status::Statuses args_parse(int argc, char* argv[],
-                            int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                            int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Prints help
@@ -62,7 +62,7 @@ Status::Statuses args_parse(int argc, char* argv[],
  */
 ArgsMode print_help(const Argument args_dict[], const int args_dict_len,
                     int* arg_i, const int argc, char* argv[],
-                    int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                    int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Sets auto max level
@@ -80,7 +80,7 @@ ArgsMode print_help(const Argument args_dict[], const int args_dict_len,
  */
 ArgsMode set_level(const Argument args_dict[], const int args_dict_len,
                    int* arg_i, const int argc, char* argv[],
-                   int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                   int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Sets output symb num
@@ -98,7 +98,7 @@ ArgsMode set_level(const Argument args_dict[], const int args_dict_len,
  */
 ArgsMode set_symb_num(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Sets filename
@@ -116,7 +116,7 @@ ArgsMode set_symb_num(const Argument args_dict[], const int args_dict_len,
  */
 ArgsMode set_filename(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 
 /**
  * @brief Enables voiceover
@@ -134,5 +134,5 @@ ArgsMode set_filename(const Argument args_dict[], const int args_dict_len,
  */
 ArgsMode enable_voice(const Argument args_dict[], const int args_dict_len,
                       int* arg_i, const int argc, char* argv[],
-                      int* auto_level, ssize_t* output_cnt, char** filename, bool* voice);
+                      int* auto_level, ssize_t* output_cnt, const char** filename, bool* voice);
 #endif // #ifndef ARGS_PARSER_H_

@@ -1,0 +1,473 @@
+\doxysection{parsers/words\+\_\+parser.h File Reference}
+\hypertarget{words__parser_8h}{}\label{words__parser_8h}\index{parsers/words\_parser.h@{parsers/words\_parser.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \"{}../statuses.\+h\"{}}\newline
+{\ttfamily \#include \"{}../cvector.\+h\"{}}\newline
+{\ttfamily \#include \"{}../hash.\+h\"{}}\newline
+{\ttfamily \#include \"{}../my\+\_\+string.\+h\"{}}\newline
+{\ttfamily \#include \"{}../voiceover.\+h\"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_nodes}{Nodes}}
+\begin{DoxyCompactList}\small\item\em Contains automaton level data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\begin{DoxyCompactList}\small\item\em Contains char information + next level \doxylink{struct_node}{Node}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{words__parser_8h_a41c208ab6781e36d191e8dbddd3280c5}{auto\+\_\+parse}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}tokens, \mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes, int max\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Adds chars to buf. If char = ~\newline
+ or buf is full, calls tx\+Speak() \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{words__parser_8h_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\+\_\+write\+\_\+node}} (\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}tokens\+\_\+arr, const unsigned int level, const unsigned int max\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Finds ch \doxylink{struct_node}{Node} in \doxylink{struct_nodes}{Nodes} vector and increments it\textquotesingle{}s cnt. Is called recursively for levels from level to max\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd}{auto\+\_\+generate\+\_\+rand\+\_\+node}} (\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}tokens\+\_\+arr, const unsigned int level, const unsigned int max\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Random generates symbol for levels from level to max\+\_\+level. Writes to str. Is called recursively. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{words__parser_8h_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\+\_\+get\+\_\+node}} (\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}tokens\+\_\+arr, const unsigned int level, const unsigned int max\+\_\+level, const unsigned int rand\+\_\+max\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Finds \doxylink{struct_node}{Node} with char from str for all levels from level to max\+\_\+level. Is called recursively. Then calles auto\+\_\+generate\+\_\+rand\+\_\+node for levels from max\+\_\+level to rand\+\_\+max\+\_\+level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{words__parser_8h_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\+\_\+detor}} (\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes)
+\begin{DoxyCompactList}\small\item\em Calls destructors for all vectors in nodes. Is called recursively. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status\+::\+Statuses}} \mbox{\hyperlink{words__parser_8h_abba9a975dcd121a8c26904abe6706b5b}{auto\+\_\+generate\+\_\+text}} (\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}nodes, const int level, ssize\+\_\+t cnt, const bool voice)
+\begin{DoxyCompactList}\small\item\em Generates and prints text. \end{DoxyCompactList}\item 
+long long \mbox{\hyperlink{words__parser_8h_ab6714abfee5636bd29edf5bf3766e263}{rand\+\_\+normal\+\_\+generate\+\_\+ll}} (long long min, long long max)
+\begin{DoxyCompactList}\small\item\em Generates random long long number from min to max. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{words__parser_8h_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}\label{words__parser_8h_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6} 
+\index{words\_parser.h@{words\_parser.h}!auto\_detor@{auto\_detor}}
+\index{auto\_detor@{auto\_detor}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_detor()}{auto\_detor()}}
+{\footnotesize\ttfamily void auto\+\_\+detor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes }\end{DoxyParamCaption})}
+
+
+
+Calls destructors for all vectors in nodes. Is called recursively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00148}{148}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children);}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}{vec\_detor}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}});}
+\DoxyCodeLine{00155\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{words__parser_8cpp_source_l00148}{auto\+\_\+detor()}}, \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}, \mbox{\hyperlink{words__parser_8h_source_l00020}{Nodes\+::vec}}, \mbox{\hyperlink{cvector_8cpp_source_l00013}{vec\+\_\+detor()}}, and \mbox{\hyperlink{cvector_8cpp_source_l00051}{vec\+\_\+get()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00148}{auto\+\_\+detor()}}, and \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+\Hypertarget{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd}\label{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd} 
+\index{words\_parser.h@{words\_parser.h}!auto\_generate\_rand\_node@{auto\_generate\_rand\_node}}
+\index{auto\_generate\_rand\_node@{auto\_generate\_rand\_node}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_generate\_rand\_node()}{auto\_generate\_rand\_node()}}
+{\footnotesize\ttfamily void auto\+\_\+generate\+\_\+rand\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{tokens\+\_\+arr,  }\item[{const unsigned int}]{level,  }\item[{const unsigned int}]{max\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Random generates symbol for levels from level to max\+\_\+level. Writes to str. Is called recursively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & current level \doxylink{struct_nodes}{Nodes} \\
+\hline
+{\em tokens\+\_\+arr} & destination \\
+\hline
+{\em level} & current level \\
+\hline
+{\em max\+\_\+level} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00058\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ r\ =\ \mbox{\hyperlink{words__parser_8cpp_ab6714abfee5636bd29edf5bf3766e263}{rand\_normal\_generate\_ll}}(0,\ (\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long})nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ r\ -\/=\ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>cnt;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ <=\ 0)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ tokens\_arr[level]\ =\ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ max\_level)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}Rand\ node\ generate\ error"{}});}
+\DoxyCodeLine{00073\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{words__parser_8h_source_l00019}{Nodes\+::all\+\_\+cnt}}, \mbox{\hyperlink{words__parser_8cpp_source_l00056}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, \mbox{\hyperlink{words__parser_8cpp_source_l00157}{rand\+\_\+normal\+\_\+generate\+\_\+ll()}}, \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}, \mbox{\hyperlink{words__parser_8h_source_l00020}{Nodes\+::vec}}, and \mbox{\hyperlink{cvector_8cpp_source_l00051}{vec\+\_\+get()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00056}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, and \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}.
+
+\Hypertarget{words__parser_8h_abba9a975dcd121a8c26904abe6706b5b}\label{words__parser_8h_abba9a975dcd121a8c26904abe6706b5b} 
+\index{words\_parser.h@{words\_parser.h}!auto\_generate\_text@{auto\_generate\_text}}
+\index{auto\_generate\_text@{auto\_generate\_text}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_generate\_text()}{auto\_generate\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status\+::\+Statuses}} auto\+\_\+generate\+\_\+text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes,  }\item[{const int}]{level,  }\item[{ssize\+\_\+t}]{cnt,  }\item[{const bool}]{voice }\end{DoxyParamCaption})}
+
+
+
+Generates and prints text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & zero level node \\
+\hline
+{\em level} & max level \\
+\hline
+{\em cnt} & word count \\
+\hline
+{\em voice} & enables voiceover \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status\+::\+Statuses} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{char}**\ prev\_tokens\ =\ (\textcolor{keywordtype}{char}**)calloc((level\ +\ 1),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*));}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\_tokens\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}{Status::MEMORY\_EXCEED}};}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ level\ \%d\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}},\ level);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ 0,\ level);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ downgrade\ =\ 0;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ level;\ i++)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ prev\_tokens[i]\ =\ prev\_tokens[i\ +\ 1];}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ level,\ level)\ \&\&\ -\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ downgrade++;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ downgrade)\ downgrade\ =\ level;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ level\ -\/\ downgrade,\ level);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ prev\_tokens[0]);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (voice)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(prev\_tokens[0]);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ level;\ i++)}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prev\_tokens[i]\ =\ prev\_tokens[i\ +\ 1];}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ prev\_tokens[0]);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (voice)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(prev\_tokens[0]);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ downgrade\ =\ 0;}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(\textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00141\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ stop\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ free(prev\_tokens);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{Status::NORMAL\_WORK}};}
+\DoxyCodeLine{00146\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}, \mbox{\hyperlink{statuses_8h_source_l00017}{Status\+::\+MEMORY\+\_\+\+EXCEED}}, \mbox{\hyperlink{statuses_8h_source_l00013}{Status\+::\+NORMAL\+\_\+\+WORK}}, and \mbox{\hyperlink{voiceover_8cpp_source_l00003}{speak\+\_\+add\+\_\+token()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+\Hypertarget{words__parser_8h_aa17f7f2eeec2118989f7e4f24a065f3b}\label{words__parser_8h_aa17f7f2eeec2118989f7e4f24a065f3b} 
+\index{words\_parser.h@{words\_parser.h}!auto\_get\_node@{auto\_get\_node}}
+\index{auto\_get\_node@{auto\_get\_node}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_get\_node()}{auto\_get\_node()}}
+{\footnotesize\ttfamily bool auto\+\_\+get\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{tokens\+\_\+arr,  }\item[{const unsigned int}]{level,  }\item[{const unsigned int}]{max\+\_\+level,  }\item[{const unsigned int}]{rand\+\_\+max\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Finds \doxylink{struct_node}{Node} with char from str for all levels from level to max\+\_\+level. Is called recursively. Then calles auto\+\_\+generate\+\_\+rand\+\_\+node for levels from max\+\_\+level to rand\+\_\+max\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & current level \doxylink{struct_nodes}{Nodes} \\
+\hline
+{\em tokens\+\_\+arr} & source \\
+\hline
+{\em level} & current level \\
+\hline
+{\em max\+\_\+level} & max level and min level for \doxylink{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd}{auto\+\_\+generate\+\_\+rand\+\_\+node()} \\
+\hline
+{\em rand\+\_\+max\+\_\+level} & max level for \doxylink{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd}{auto\+\_\+generate\+\_\+rand\+\_\+node()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00077\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(nodes,\ tokens\_arr,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{char}*\ token\ =\ tokens\_arr[level];}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(token);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ node\_token\_len\ =\ strlen(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_token\_len\ ==\ token\_len\ \&\&}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>hash\ ==\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(token,\ (\textcolor{keywordtype}{int})token\_len)\ \&\&}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ strncmp(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token,\ token,\ node\_token\_len))}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{00101\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{words__parser_8cpp_source_l00056}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}, \mbox{\hyperlink{hash_8cpp_source_l00011}{Murmur\+Hash2\+A()}}, \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}, \mbox{\hyperlink{words__parser_8h_source_l00020}{Nodes\+::vec}}, and \mbox{\hyperlink{cvector_8cpp_source_l00051}{vec\+\_\+get()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00103}{auto\+\_\+generate\+\_\+text()}}, and \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}.
+
+\Hypertarget{words__parser_8h_a41c208ab6781e36d191e8dbddd3280c5}\label{words__parser_8h_a41c208ab6781e36d191e8dbddd3280c5} 
+\index{words\_parser.h@{words\_parser.h}!auto\_parse@{auto\_parse}}
+\index{auto\_parse@{auto\_parse}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_parse()}{auto\_parse()}}
+{\footnotesize\ttfamily bool auto\+\_\+parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{tokens,  }\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes,  }\item[{int}]{max\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Adds chars to buf. If char = ~\newline
+ or buf is full, calls tx\+Speak() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & \\
+\hline
+{\em ch} & \\
+\hline
+\end{DoxyParams}
+Parses tokens to nodes
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & \\
+\hline
+{\em nodes} & zero level \doxylink{struct_nodes}{Nodes} \\
+\hline
+{\em max\+\_\+level} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false error 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ assert(tokens);}
+\DoxyCodeLine{00005\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ tokens-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ -\/\ max\_level;\ i++)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(nodes,\ (\textcolor{keywordtype}{char}**)(tokens-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}})\ +\ i,\ 0,\ max\_level))}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00010\ \ \ \ \ \}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00012\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}, and \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+\Hypertarget{words__parser_8h_a90be85b0e1f2ba78bf5e7af69c03244e}\label{words__parser_8h_a90be85b0e1f2ba78bf5e7af69c03244e} 
+\index{words\_parser.h@{words\_parser.h}!auto\_write\_node@{auto\_write\_node}}
+\index{auto\_write\_node@{auto\_write\_node}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{auto\_write\_node()}{auto\_write\_node()}}
+{\footnotesize\ttfamily bool auto\+\_\+write\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_nodes}{Nodes}} \texorpdfstring{$\ast$}{*}}]{nodes,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{tokens\+\_\+arr,  }\item[{const unsigned int}]{level,  }\item[{const unsigned int}]{max\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Finds ch \doxylink{struct_node}{Node} in \doxylink{struct_nodes}{Nodes} vector and increments it\textquotesingle{}s cnt. Is called recursively for levels from level to max\+\_\+level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & current level \doxylink{struct_nodes}{Nodes} \\
+\hline
+{\em tokens\+\_\+arr} & source \\
+\hline
+{\em level} & current level \\
+\hline
+{\em max\+\_\+level} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false error 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{00016\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}}++;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(tokens\_arr[level]);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ node\_token\_len\ =\ strlen(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_token\_len\ ==\ token\_len\ \&\&}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},i))-\/>hash\ ==\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(tokens\_arr[level],\ (\textcolor{keywordtype}{int})token\_len)\ \&\&}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ strncmp(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token,\ tokens\_arr[level],\ node\_token\_len))}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}})\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ new\_node\ =\ \{\};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}}\ =\ tokens\_arr[level];}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a00ecb32021c32109fdae8d5988bb9103}{hash}}\ =\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(new\_node.\mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}},\ (\textcolor{keywordtype}{int})token\_len);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}}\ =\ 1;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}{vec\_ctor}}(\&new\_node.\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}}.\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}})))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_write\_node():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}{vec\_push}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ \&new\_node))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_write\_node():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>cnt++;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{words__parser_8h_source_l00019}{Nodes\+::all\+\_\+cnt}}, \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}, \mbox{\hyperlink{words__parser_8h_source_l00032}{Node\+::children}}, \mbox{\hyperlink{words__parser_8h_source_l00030}{Node\+::cnt}}, \mbox{\hyperlink{words__parser_8h_source_l00028}{Node\+::hash}}, \mbox{\hyperlink{hash_8cpp_source_l00011}{Murmur\+Hash2\+A()}}, \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}, \mbox{\hyperlink{words__parser_8h_source_l00027}{Node\+::token}}, \mbox{\hyperlink{words__parser_8h_source_l00020}{Nodes\+::vec}}, \mbox{\hyperlink{cvector_8cpp_source_l00003}{vec\+\_\+ctor()}}, \mbox{\hyperlink{cvector_8cpp_source_l00051}{vec\+\_\+get()}}, and \mbox{\hyperlink{cvector_8cpp_source_l00036}{vec\+\_\+push()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00003}{auto\+\_\+parse()}}, and \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
+
+\Hypertarget{words__parser_8h_ab6714abfee5636bd29edf5bf3766e263}\label{words__parser_8h_ab6714abfee5636bd29edf5bf3766e263} 
+\index{words\_parser.h@{words\_parser.h}!rand\_normal\_generate\_ll@{rand\_normal\_generate\_ll}}
+\index{rand\_normal\_generate\_ll@{rand\_normal\_generate\_ll}!words\_parser.h@{words\_parser.h}}
+\doxysubsubsection{\texorpdfstring{rand\_normal\_generate\_ll()}{rand\_normal\_generate\_ll()}}
+{\footnotesize\ttfamily long long rand\+\_\+normal\+\_\+generate\+\_\+ll (\begin{DoxyParamCaption}\item[{long long}]{min,  }\item[{long long}]{max }\end{DoxyParamCaption})}
+
+
+
+Generates random long long number from min to max. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & \\
+\hline
+{\em max} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long long 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{words__parser_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{words__parser_8cpp_source}{words\+\_\+parser.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{static}\ std::random\_device\ rd;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ Mersenne\ twister\ PRNG,\ initialized\ with\ seed\ from\ previous\ random\ device\ instance}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{static}\ std::mt19937\ gen(rd());}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ std::uniform\_int\_distribution<long\ long>\ rand\_normal\ \{min,\ max\};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ rand\_normal(gen);}
+\DoxyCodeLine{00166\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00056}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}.
+

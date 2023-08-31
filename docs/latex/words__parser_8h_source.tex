@@ -1,0 +1,51 @@
+\doxysection{words\+\_\+parser.\+h}
+\hypertarget{words__parser_8h_source}{}\label{words__parser_8h_source}\index{parsers/words\_parser.h@{parsers/words\_parser.h}}
+\mbox{\hyperlink{words__parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ AUTOMATON\_PARSER\_H\_}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ AUTOMATON\_PARSER\_H\_}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}../statuses.h"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}../cvector.h"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}../hash.h"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}../my\_string.h"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}../voiceover.h"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00018}\mbox{\hyperlink{struct_nodes}{00018}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_nodes}{Nodes}}\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00019}\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{00019}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}}\ =\ 0;\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00020}\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{00020}}\ \ \ \ \ \mbox{\hyperlink{struct_vector}{Vector}}\ \mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}\ =\ \{\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00021}00021\ \};}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00026}\mbox{\hyperlink{struct_node}{00026}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_node}{Node}}\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00027}\mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{00027}}\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00028}\mbox{\hyperlink{struct_node_a00ecb32021c32109fdae8d5988bb9103}{00028}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_node_a00ecb32021c32109fdae8d5988bb9103}{hash}};\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00030}\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{00030}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}};\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00032}\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{00032}}\ \ \ \ \ \mbox{\hyperlink{struct_nodes}{Nodes}}\ \mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00033}00033\ \};}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00041}00041\ \textcolor{comment}{//void\ speak\_add(String*\ buf,\ char\ ch);}}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00052}00052\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8h_a41c208ab6781e36d191e8dbddd3280c5}{auto\_parse}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ tokens,\ \mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{int}\ max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00065}00065\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8h_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00076}00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{words__parser_8h_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00090}00090\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8h_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rand\_max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00097}00097\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{words__parser_8h_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00108}00108\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status::Statuses}}\ \mbox{\hyperlink{words__parser_8h_abba9a975dcd121a8c26904abe6706b5b}{auto\_generate\_text}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ level,\ ssize\_t\ cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ voice);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00117}00117\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{words__parser_8h_ab6714abfee5636bd29edf5bf3766e263}{rand\_normal\_generate\_ll}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ min,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ max);}
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8h_source_l00119}00119\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \#ifndef\ AUTOMATON\_PARSER\_H\_}}
+
+\end{DoxyCode}

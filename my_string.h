@@ -6,7 +6,12 @@
 #include <ctype.h>
 #include <assert.h>
 
-
+/**
+ * @brief Tokenizator // TODO docs
+ *
+ * @param str
+ * @return char*
+ */
 char* my_strtok(char* str);
 
 #endif // #ifndef MY_STRING_H_

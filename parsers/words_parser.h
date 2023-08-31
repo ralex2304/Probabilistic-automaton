@@ -6,14 +6,11 @@
 #include <random>
 #include <string.h>
 
-#include "cvector.h"
-#include "hash.h"
-#include "my_string.h"
-
-struct String {
-    char* str = nullptr;
-    size_t len = 0;
-};
+#include "../statuses.h"
+#include "../cvector.h"
+#include "../hash.h"
+#include "../my_string.h"
+#include "../voiceover.h"
 
 /**
  * @brief Contains automaton level data
@@ -33,28 +30,6 @@ struct Node {
     unsigned long long cnt; ///< word count
 
     Nodes children;         ///< next level Node
-};
-
-/**
- * @brief Specifies functions status
- */
-struct Status {
-    enum Statuses {
-        NO_ERR        = -2,  ///< Poison value
-        NORMAL_WORK   = -1,  ///< Normal mode system value (isn't returned in main())
-        OK_EXIT       =  0,  ///< OK
-        ARGS_ERROR    =  1,  ///< Console arguments error
-        FILE_ERROR    =  2,  ///< File opening or reading error
-        MEMORY_EXCEED =  3,  ///< Memory allocation failed
-    };
-
-    /**
-     * @brief Prints and returns given status
-     *
-     * @param[in] status
-     * @return Statuses
-     */
-    static Statuses raise(const Statuses status);
 };
 
 /**
@@ -120,5 +95,25 @@ bool auto_get_node(Nodes* nodes, char** tokens_arr, const unsigned int level, co
  * @param nodes
  */
 void auto_detor(Nodes* nodes);
+
+/**
+ * @brief Generates and prints text
+ *
+ * @param nodes zero level node
+ * @param level max level
+ * @param cnt word count
+ * @param voice enables voiceover
+ * @return Status::Statuses
+ */
+Status::Statuses auto_generate_text(Nodes* nodes, const int level, ssize_t cnt, const bool voice);
+
+/**
+ * @brief Generates random long long number from min to max
+ *
+ * @param min
+ * @param max
+ * @return long long
+ */
+long long rand_normal_generate_ll(long long min, long long max);
 
 #endif // #ifndef AUTOMATON_PARSER_H_

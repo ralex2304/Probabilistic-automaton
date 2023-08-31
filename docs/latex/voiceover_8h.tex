@@ -1,0 +1,99 @@
+\doxysection{voiceover.\+h File Reference}
+\hypertarget{voiceover_8h}{}\label{voiceover_8h}\index{voiceover.h@{voiceover.h}}
+{\ttfamily \#include $<$TXLib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{voiceover_8h_a664ae50e3ec3c7cf59cdd4b7eeef6a7f}{TX\+\_\+\+COMPILED}}
+\item 
+\#define \mbox{\hyperlink{voiceover_8h_a469332fe8d1b327b63d230ba28ba87a6}{TX\+\_\+\+USE\+\_\+\+SPEAK}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{voiceover_8h_a56000340d4c6dcf037d5742339431f28}{speak\+\_\+add\+\_\+token}} (const char \texorpdfstring{$\ast$}{*}add\+\_\+token, const bool speak\+\_\+all=false)
+\begin{DoxyCompactList}\small\item\em Adds token to buffer and do voiceover with Tx\+Speak(). Call with speak\+\_\+all = true and add\+\_\+token = \"{}\"{} to clear buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{voiceover_8h_a664ae50e3ec3c7cf59cdd4b7eeef6a7f}\label{voiceover_8h_a664ae50e3ec3c7cf59cdd4b7eeef6a7f} 
+\index{voiceover.h@{voiceover.h}!TX\_COMPILED@{TX\_COMPILED}}
+\index{TX\_COMPILED@{TX\_COMPILED}!voiceover.h@{voiceover.h}}
+\doxysubsubsection{\texorpdfstring{TX\_COMPILED}{TX\_COMPILED}}
+{\footnotesize\ttfamily \#define TX\+\_\+\+COMPILED}
+
+
+
+Definition at line \mbox{\hyperlink{voiceover_8h_source_l00004}{4}} of file \mbox{\hyperlink{voiceover_8h_source}{voiceover.\+h}}.
+
+\Hypertarget{voiceover_8h_a469332fe8d1b327b63d230ba28ba87a6}\label{voiceover_8h_a469332fe8d1b327b63d230ba28ba87a6} 
+\index{voiceover.h@{voiceover.h}!TX\_USE\_SPEAK@{TX\_USE\_SPEAK}}
+\index{TX\_USE\_SPEAK@{TX\_USE\_SPEAK}!voiceover.h@{voiceover.h}}
+\doxysubsubsection{\texorpdfstring{TX\_USE\_SPEAK}{TX\_USE\_SPEAK}}
+{\footnotesize\ttfamily \#define TX\+\_\+\+USE\+\_\+\+SPEAK}
+
+
+
+Definition at line \mbox{\hyperlink{voiceover_8h_source_l00005}{5}} of file \mbox{\hyperlink{voiceover_8h_source}{voiceover.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{voiceover_8h_a56000340d4c6dcf037d5742339431f28}\label{voiceover_8h_a56000340d4c6dcf037d5742339431f28} 
+\index{voiceover.h@{voiceover.h}!speak\_add\_token@{speak\_add\_token}}
+\index{speak\_add\_token@{speak\_add\_token}!voiceover.h@{voiceover.h}}
+\doxysubsubsection{\texorpdfstring{speak\_add\_token()}{speak\_add\_token()}}
+{\footnotesize\ttfamily void speak\+\_\+add\+\_\+token (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{add\+\_\+token,  }\item[{const bool}]{speak\+\_\+all = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Adds token to buffer and do voiceover with Tx\+Speak(). Call with speak\+\_\+all = true and add\+\_\+token = \"{}\"{} to clear buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em add\+\_\+token} & \\
+\hline
+{\em speak\+\_\+all} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{voiceover_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{voiceover_8cpp_source}{voiceover.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ assert(add\_token);}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ buf\_size\ =\ 0;}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[\_TX\_BUFSIZE]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(add\_token);}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (buf\_size\ +\ token\_len\ >\ \_TX\_BUFSIZE\ -\/\ 1\ ||\ buf[buf\_size\ -\/\ 1]\ ==\ \textcolor{charliteral}{'.'}\ ||\ speak\_all)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ buf[buf\_size]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ txSpeak(\textcolor{stringliteral}{"{}<speak\ version='1.0'\ xmlns='http://www.w3.org/2001/10/synthesis'\ xml:lang='EN'>\%s</speak>"{}},\ buf);}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ buf\_size\ =\ 0;}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{while}\ (token\_len\ >\ \_TX\_BUFSIZE\ -\/\ 1)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ strncpy(buf,\ add\_token,\ \_TX\_BUFSIZE\ -\/\ 1);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ buf[\_TX\_BUFSIZE\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ txSpeak(\textcolor{stringliteral}{"{}<speak\ version='1.0'\ xmlns='http://www.w3.org/2001/10/synthesis'\ xml:lang='EN'>\%s</speak>"{}},\ buf);}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ add\_token\ +=\ \_TX\_BUFSIZE\ -\/\ 1;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ token\_len\ -\/=\ \_TX\_BUFSIZE\ -\/\ 1;}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (token\_len\ >\ 0)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ strncpy(buf\ +\ buf\_size,\ add\_token,\ token\_len);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ buf\_size\ +=\ token\_len;}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00103}{auto\+\_\+generate\+\_\+text()}}.
+

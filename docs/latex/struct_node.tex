@@ -7,15 +7,17 @@ Contains char information + next level \doxylink{struct_node}{Node}.
 
 
 
-{\ttfamily \#include $<$nodevector.\+h$>$}
+{\ttfamily \#include $<$words\+\_\+parser.\+h$>$}
 
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-char \mbox{\hyperlink{struct_node_a60b3924d995a47df096d90f9a926d7ba}{ch}}
-\begin{DoxyCompactList}\small\item\em char \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}}
+\begin{DoxyCompactList}\small\item\em word \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{struct_node_a00ecb32021c32109fdae8d5988bb9103}{hash}}
+\begin{DoxyCompactList}\small\item\em word hash \end{DoxyCompactList}\item 
 unsigned long long \mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}}
-\begin{DoxyCompactList}\small\item\em char count \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em word count \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_nodes}{Nodes}} \mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}}
 \begin{DoxyCompactList}\small\item\em next level \doxylink{struct_node}{Node} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -23,29 +25,11 @@ unsigned long long \mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c9176
 \doxysubsection{Detailed Description}
 Contains char information + next level \doxylink{struct_node}{Node}. 
 
-Definition at line \mbox{\hyperlink{nodevector_8h_source_l00029}{29}} of file \mbox{\hyperlink{nodevector_8h_source}{nodevector.\+h}}.
+Definition at line \mbox{\hyperlink{words__parser_8h_source_l00026}{26}} of file \mbox{\hyperlink{words__parser_8h_source}{words\+\_\+parser.\+h}}.
 
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{struct_node_a60b3924d995a47df096d90f9a926d7ba}\label{struct_node_a60b3924d995a47df096d90f9a926d7ba} 
-\index{Node@{Node}!ch@{ch}}
-\index{ch@{ch}!Node@{Node}}
-\doxysubsubsection{\texorpdfstring{ch}{ch}}
-{\footnotesize\ttfamily char Node\+::ch}
-
-
-
-char 
-
-
-
-Definition at line \mbox{\hyperlink{nodevector_8h_source_l00030}{30}} of file \mbox{\hyperlink{nodevector_8h_source}{nodevector.\+h}}.
-
-
-
-Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00061}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, \mbox{\hyperlink{automaton__parser_8cpp_source_l00082}{auto\+\_\+get\+\_\+node()}}, and \mbox{\hyperlink{automaton__parser_8cpp_source_l00032}{auto\+\_\+write\+\_\+node()}}.
-
 \Hypertarget{struct_node_a905a5389cfeff540cb300db0811af57c}\label{struct_node_a905a5389cfeff540cb300db0811af57c} 
 \index{Node@{Node}!children@{children}}
 \index{children@{children}!Node@{Node}}
@@ -58,11 +42,11 @@ next level \doxylink{struct_node}{Node}
 
 
 
-Definition at line \mbox{\hyperlink{nodevector_8h_source_l00033}{33}} of file \mbox{\hyperlink{nodevector_8h_source}{nodevector.\+h}}.
+Definition at line \mbox{\hyperlink{words__parser_8h_source_l00032}{32}} of file \mbox{\hyperlink{words__parser_8h_source}{words\+\_\+parser.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00101}{auto\+\_\+detor()}}, \mbox{\hyperlink{automaton__parser_8cpp_source_l00061}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, \mbox{\hyperlink{automaton__parser_8cpp_source_l00082}{auto\+\_\+get\+\_\+node()}}, and \mbox{\hyperlink{automaton__parser_8cpp_source_l00032}{auto\+\_\+write\+\_\+node()}}.
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
 
 \Hypertarget{struct_node_a952442a5928b3c3efbb0b22232c91761}\label{struct_node_a952442a5928b3c3efbb0b22232c91761} 
 \index{Node@{Node}!cnt@{cnt}}
@@ -72,18 +56,54 @@ Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00101}{auto\+\_\+d
 
 
 
-char count 
+word count 
 
 
 
-Definition at line \mbox{\hyperlink{nodevector_8h_source_l00031}{31}} of file \mbox{\hyperlink{nodevector_8h_source}{nodevector.\+h}}.
+Definition at line \mbox{\hyperlink{words__parser_8h_source_l00030}{30}} of file \mbox{\hyperlink{words__parser_8h_source}{words\+\_\+parser.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{automaton__parser_8cpp_source_l00061}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, and \mbox{\hyperlink{automaton__parser_8cpp_source_l00032}{auto\+\_\+write\+\_\+node()}}.
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
+
+\Hypertarget{struct_node_a00ecb32021c32109fdae8d5988bb9103}\label{struct_node_a00ecb32021c32109fdae8d5988bb9103} 
+\index{Node@{Node}!hash@{hash}}
+\index{hash@{hash}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{hash}{hash}}
+{\footnotesize\ttfamily unsigned int Node\+::hash}
+
+
+
+word hash 
+
+
+
+Definition at line \mbox{\hyperlink{words__parser_8h_source_l00028}{28}} of file \mbox{\hyperlink{words__parser_8h_source}{words\+\_\+parser.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
+
+\Hypertarget{struct_node_a8ffba55410bdf8395315fdfb91c48dda}\label{struct_node_a8ffba55410bdf8395315fdfb91c48dda} 
+\index{Node@{Node}!token@{token}}
+\index{token@{token}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Node\+::token}
+
+
+
+word 
+
+
+
+Definition at line \mbox{\hyperlink{words__parser_8h_source_l00027}{27}} of file \mbox{\hyperlink{words__parser_8h_source}{words\+\_\+parser.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{nodevector_8h}{nodevector.\+h}}\end{DoxyCompactItemize}
+parsers/\mbox{\hyperlink{words__parser_8h}{words\+\_\+parser.\+h}}\end{DoxyCompactItemize}

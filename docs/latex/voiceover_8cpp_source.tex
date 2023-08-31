@@ -1,0 +1,34 @@
+\doxysection{voiceover.\+cpp}
+\hypertarget{voiceover_8cpp_source}{}\label{voiceover_8cpp_source}\mbox{\hyperlink{voiceover_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{voiceover_8h}{voiceover.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00003}\mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{00003}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ add\_token,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ speak\_all)\ \{}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00004}00004\ \ \ \ \ assert(add\_token);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00006}00006\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ buf\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ buf[\_TX\_BUFSIZE]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(add\_token);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{if}\ (buf\_size\ +\ token\_len\ >\ \_TX\_BUFSIZE\ -\/\ 1\ ||\ buf[buf\_size\ -\/\ 1]\ ==\ \textcolor{charliteral}{'.'}\ ||\ speak\_all)\ \{}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ buf[buf\_size]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00013}00013\ \ \ \ \ \ \ \ \ txSpeak(\textcolor{stringliteral}{"{}<speak\ version='1.0'\ xmlns='http://www.w3.org/2001/10/synthesis'\ xml:lang='EN'>\%s</speak>"{}},\ buf);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ buf\_size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00015}00015\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{keywordflow}{while}\ (token\_len\ >\ \_TX\_BUFSIZE\ -\/\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ strncpy(buf,\ add\_token,\ \_TX\_BUFSIZE\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ buf[\_TX\_BUFSIZE\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ txSpeak(\textcolor{stringliteral}{"{}<speak\ version='1.0'\ xmlns='http://www.w3.org/2001/10/synthesis'\ xml:lang='EN'>\%s</speak>"{}},\ buf);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ add\_token\ +=\ \_TX\_BUFSIZE\ -\/\ 1;}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ token\_len\ -\/=\ \_TX\_BUFSIZE\ -\/\ 1;}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (token\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ strncpy(buf\ +\ buf\_size,\ add\_token,\ token\_len);}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ buf\_size\ +=\ token\_len;}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{voiceover_8cpp_source_l00029}00029\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,152 @@
+\doxysection{Status Struct Reference}
+\hypertarget{struct_status}{}\label{struct_status}\index{Status@{Status}}
+
+
+Specifies functions status.  
+
+
+
+
+{\ttfamily \#include $<$statuses.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Statuses}} \{ \newline
+\mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caa1be15eed6fe6869628b5c62338587f1}{DEFAULT}} = -\/2
+, \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{NORMAL\+\_\+\+WORK}} = -\/1
+, \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a}{OK\+\_\+\+EXIT}} = 0
+, \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}{ARGS\+\_\+\+ERROR}} = 1
+, \newline
+\mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caeb7466df2f4393c6099557dd32dccc3d}{FILE\+\_\+\+ERROR}} = 2
+, \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}{MEMORY\+\_\+\+EXCEED}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Statuses}} \mbox{\hyperlink{struct_status_a30c8084592b2ff90cfc22c1860e58dab}{raise}} (const \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Statuses}} status)
+\begin{DoxyCompactList}\small\item\em Prints and returns given status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Specifies functions status. 
+
+Definition at line \mbox{\hyperlink{statuses_8h_source_l00010}{10}} of file \mbox{\hyperlink{statuses_8h_source}{statuses.\+h}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604c}\label{struct_status_ab31bb94cc29a302cab703638615b604c} 
+\index{Status@{Status}!Statuses@{Statuses}}
+\index{Statuses@{Statuses}!Status@{Status}}
+\doxysubsubsection{\texorpdfstring{Statuses}{Statuses}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status\+::\+Statuses}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!Status@{Status}}\index{Status@{Status}!DEFAULT@{DEFAULT}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604caa1be15eed6fe6869628b5c62338587f1}\label{struct_status_ab31bb94cc29a302cab703638615b604caa1be15eed6fe6869628b5c62338587f1} 
+DEFAULT&Poison value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMAL\_WORK@{NORMAL\_WORK}!Status@{Status}}\index{Status@{Status}!NORMAL\_WORK@{NORMAL\_WORK}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}\label{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0} 
+NORMAL\+\_\+\+WORK&Normal mode system value (isn\textquotesingle{}t returned in \doxylink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main()}) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OK\_EXIT@{OK\_EXIT}!Status@{Status}}\index{Status@{Status}!OK\_EXIT@{OK\_EXIT}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a}\label{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a} 
+OK\+\_\+\+EXIT&OK and exit. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARGS\_ERROR@{ARGS\_ERROR}!Status@{Status}}\index{Status@{Status}!ARGS\_ERROR@{ARGS\_ERROR}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}\label{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef} 
+ARGS\+\_\+\+ERROR&Console arguments error. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_ERROR@{FILE\_ERROR}!Status@{Status}}\index{Status@{Status}!FILE\_ERROR@{FILE\_ERROR}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604caeb7466df2f4393c6099557dd32dccc3d}\label{struct_status_ab31bb94cc29a302cab703638615b604caeb7466df2f4393c6099557dd32dccc3d} 
+FILE\+\_\+\+ERROR&File opening or reading error. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_EXCEED@{MEMORY\_EXCEED}!Status@{Status}}\index{Status@{Status}!MEMORY\_EXCEED@{MEMORY\_EXCEED}}}\Hypertarget{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}\label{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7} 
+MEMORY\+\_\+\+EXCEED&Memory allocation failed. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{statuses_8h_source_l00011}{11}} of file \mbox{\hyperlink{statuses_8h_source}{statuses.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caa1be15eed6fe6869628b5c62338587f1}{DEFAULT}}\ \ \ \ \ \ \ =\ -\/2,\ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{NORMAL\_WORK}}\ \ \ =\ -\/1,\ \ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a}{OK\_EXIT}}\ \ \ \ \ \ \ =\ \ 0,\ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}{ARGS\_ERROR}}\ \ \ \ =\ \ 1,\ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caeb7466df2f4393c6099557dd32dccc3d}{FILE\_ERROR}}\ \ \ \ =\ \ 2,\ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}{MEMORY\_EXCEED}}\ =\ \ 3,\ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_status_a30c8084592b2ff90cfc22c1860e58dab}\label{struct_status_a30c8084592b2ff90cfc22c1860e58dab} 
+\index{Status@{Status}!raise@{raise}}
+\index{raise@{raise}!Status@{Status}}
+\doxysubsubsection{\texorpdfstring{raise()}{raise()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status\+::\+Statuses}} Status\+::raise (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Statuses}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Prints and returns given status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em status} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Statuses 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{statuses_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{statuses_8cpp_source}{statuses.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{keywordflow}{switch}\ (status)\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{NORMAL\_WORK}}:}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}Status::raise():\ NORMAL\_WORK\ mustn't\ be\ raised"{}});}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}{ARGS\_ERROR}}:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Exiting.\ Args\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caeb7466df2f4393c6099557dd32dccc3d}{FILE\_ERROR}}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Exiting.\ File\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}{MEMORY\_EXCEED}}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Exiting.\ Not\ enough\ memory\(\backslash\)n"{}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a}{OK\_EXIT}}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604caa1be15eed6fe6869628b5c62338587f1}{DEFAULT}}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}Error::raise():\ wrong\ error"{}});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00022\ \ \ \ \ \};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{statuses_8h_source_l00015}{ARGS\+\_\+\+ERROR}}, \mbox{\hyperlink{statuses_8h_source_l00012}{DEFAULT}}, \mbox{\hyperlink{statuses_8h_source_l00016}{FILE\+\_\+\+ERROR}}, \mbox{\hyperlink{statuses_8h_source_l00017}{MEMORY\+\_\+\+EXCEED}}, \mbox{\hyperlink{statuses_8h_source_l00013}{NORMAL\+\_\+\+WORK}}, and \mbox{\hyperlink{statuses_8h_source_l00014}{OK\+\_\+\+EXIT}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{statuses_8h}{statuses.\+h}}\item 
+\mbox{\hyperlink{statuses_8cpp}{statuses.\+cpp}}\end{DoxyCompactItemize}

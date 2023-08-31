@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <string.h>
 
-#include "automaton_parser.h"
+#include "statuses.h"
 
 /**
  * @brief Specifies int main() returns

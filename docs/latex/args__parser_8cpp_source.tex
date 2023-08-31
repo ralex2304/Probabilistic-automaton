@@ -1,0 +1,192 @@
+\doxysection{args\+\_\+parser.\+cpp}
+\hypertarget{args__parser_8cpp_source}{}\label{args__parser_8cpp_source}\mbox{\hyperlink{args__parser_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{args__parser_8h}{args\_parser.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00003}\mbox{\hyperlink{args__parser_8cpp_a85967f8ee387a07c0042c0904dd80c9f}{00003}}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status::Statuses}}\ \mbox{\hyperlink{args__parser_8cpp_a85967f8ee387a07c0042c0904dd80c9f}{args\_parse}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00004}00004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00005}00005\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00006}00006\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00007}00007\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00008}00008\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00009}00009\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00010}00010\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}-\/f"{}},\ \mbox{\hyperlink{args__parser_8cpp_a453fb57f681121441bda1b2850e0839a}{set\_filename}},\ \textcolor{stringliteral}{"{}\#\ \ \ -\/f\ <name>\ -\/\ required\ -\/\ sets\ filename\(\backslash\)n"{}}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}-\/l"{}},\ \mbox{\hyperlink{args__parser_8cpp_af33074db7fbc168e22dfd2b8b46330a9}{set\_level}},\ \ \ \ \textcolor{stringliteral}{"{}\#\ \ \ -\/l\ <lvl>\ -\/\ required\ -\/\ sets\ automaton\ max\ level\(\backslash\)n"{}}\},\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}-\/n"{}},\ \mbox{\hyperlink{args__parser_8cpp_a05aeaac9ac3d0db7d195849067427d19}{set\_symb\_num}},\ \textcolor{stringliteral}{"{}\#\ \ \ -\/n\ <num>\ -\/\ required\ -\/\ sets\ printed\ symbols\ number\(\backslash\)n"{}}\},\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}-\/v"{}},\ \mbox{\hyperlink{args__parser_8cpp_aae365b346de4655a4611300c60b63734}{enable\_voice}},\ \textcolor{stringliteral}{"{}\#\ \ \ -\/v\ -\/\ enables\ voiceover\(\backslash\)n"{}}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}-\/h"{}},\ \mbox{\hyperlink{args__parser_8cpp_ae00e7b928c257cbb06faa22e5813da5d}{print\_help}},\ \ \ \textcolor{stringliteral}{"{}\#\ \ \ -\/h\ -\/\ prints\ help\ information\(\backslash\)n"{}}\},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00025}00025\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ARGS\_DICT\_LEN\ =\ \textcolor{keyword}{sizeof}(args\_dict)\ /\ \textcolor{keyword}{sizeof}(args\_dict[0]);\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ exit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ argc;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ ARGS\_DICT\_LEN;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(argv[i],\ args\_dict[j].arg)\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (args\_dict[j].func(args\_dict,\ ARGS\_DICT\_LEN,\ \&i,\ argc,\ argv,\ auto\_level,\ output\_cnt,\ filename,\ voice))\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2ea2f453cfe638e57e27bb0c9512436111e}{ArgsMode::CONTINUE}}:}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eaa42b2fb0e720a080e79a92f4ca97d927}{ArgsMode::EXIT}}:}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eacd22bad976363fdd1bfbf6759fede482}{ArgsMode::ERR}}:}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}{Status::ARGS\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}args[j].func()\ returned\ wrong\ ArgsMode"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_found)}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Wrong\ console\ argument:\ \%s\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Use\ -\/h\ for\ help\(\backslash\)n"{}},\ argv[i]);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca6a20124380bbecfc574b68b7aa4ab5ef}{Status::ARGS\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (exit)}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cabd71500b14c23ba35ba380809d51f33a}{Status::OK\_EXIT}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{Status::NORMAL\_WORK}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00064}\mbox{\hyperlink{args__parser_8cpp_ae00e7b928c257cbb06faa22e5813da5d}{00064}}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2e}{ArgsMode}}\ \mbox{\hyperlink{args__parser_8cpp_ae00e7b928c257cbb06faa22e5813da5d}{print\_help}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ args\_dict\_len,}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ arg\_i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00067}00067\ \ \ \ \ (void)\ auto\_level;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00068}00068\ \ \ \ \ (void)\ output\_cnt;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00069}00069\ \ \ \ \ (void)\ filename;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00070}00070\ \ \ \ \ (void)\ voice;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00072}00072\ \ \ \ \ assert(args\_dict);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00073}00073\ \ \ \ \ assert(arg\_i);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00074}00074\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00075}00075\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00076}00076\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00077}00077\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00078}00078\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00079}00079\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00081}00081\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\#\ This\ program\ generates\ text\ with\ probabilistic\ automaton\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#\ Console\ args:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ args\_dict\_len;\ i++)}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s"{}},\ args\_dict[i].description);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00087}00087\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\#\ End\ of\ help.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eaa42b2fb0e720a080e79a92f4ca97d927}{ArgsMode::EXIT}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00089}00089\ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00091}\mbox{\hyperlink{args__parser_8cpp_af33074db7fbc168e22dfd2b8b46330a9}{00091}}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2e}{ArgsMode}}\ \mbox{\hyperlink{args__parser_8cpp_af33074db7fbc168e22dfd2b8b46330a9}{set\_level}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ args\_dict\_len,}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ arg\_i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00094}00094\ \ \ \ \ (void)\ args\_dict;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00095}00095\ \ \ \ \ (void)\ args\_dict\_len;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00096}00096\ \ \ \ \ (void)\ output\_cnt;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00097}00097\ \ \ \ \ (void)\ filename;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00098}00098\ \ \ \ \ (void)\ voice;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00100}00100\ \ \ \ \ assert(args\_dict);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00101}00101\ \ \ \ \ assert(arg\_i);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00102}00102\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00103}00103\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00104}00104\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00105}00105\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00106}00106\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00107}00107\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (++(*arg\_i)\ >=\ argc\ ||\ sscanf(argv[*arg\_i],\ \textcolor{stringliteral}{"{}\%d"{}},\ auto\_level)\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ test\ level\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eacd22bad976363fdd1bfbf6759fede482}{ArgsMode::ERR}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2ea2f453cfe638e57e27bb0c9512436111e}{ArgsMode::CONTINUE}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00116}\mbox{\hyperlink{args__parser_8cpp_a05aeaac9ac3d0db7d195849067427d19}{00116}}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2e}{ArgsMode}}\ \mbox{\hyperlink{args__parser_8cpp_a05aeaac9ac3d0db7d195849067427d19}{set\_symb\_num}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ args\_dict\_len,}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ arg\_i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00119}00119\ \ \ \ \ (void)\ args\_dict;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00120}00120\ \ \ \ \ (void)\ args\_dict\_len;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00121}00121\ \ \ \ \ (void)\ auto\_level;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00122}00122\ \ \ \ \ (void)\ filename;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00123}00123\ \ \ \ \ (void)\ voice;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00125}00125\ \ \ \ \ assert(args\_dict);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00126}00126\ \ \ \ \ assert(arg\_i);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00127}00127\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00128}00128\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00129}00129\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00130}00130\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00131}00131\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00132}00132\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (++(*arg\_i)\ >=\ argc\ ||\ sscanf(argv[*arg\_i],\ \textcolor{stringliteral}{"{}\%zd"{}},\ output\_cnt)\ !=\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ output\ symbols\ number\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eacd22bad976363fdd1bfbf6759fede482}{ArgsMode::ERR}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00137}00137\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2ea2f453cfe638e57e27bb0c9512436111e}{ArgsMode::CONTINUE}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00139}00139\ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00141}\mbox{\hyperlink{args__parser_8cpp_a453fb57f681121441bda1b2850e0839a}{00141}}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2e}{ArgsMode}}\ \mbox{\hyperlink{args__parser_8cpp_a453fb57f681121441bda1b2850e0839a}{set\_filename}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ args\_dict\_len,}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ arg\_i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00144}00144\ \ \ \ \ (void)\ args\_dict;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00145}00145\ \ \ \ \ (void)\ args\_dict\_len;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00146}00146\ \ \ \ \ (void)\ auto\_level;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00147}00147\ \ \ \ \ (void)\ output\_cnt;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00148}00148\ \ \ \ \ (void)\ voice;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00150}00150\ \ \ \ \ assert(args\_dict);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00151}00151\ \ \ \ \ assert(arg\_i);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00152}00152\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00153}00153\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00154}00154\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00155}00155\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00156}00156\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00157}00157\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (++(*arg\_i)\ >=\ argc)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ filename\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2eacd22bad976363fdd1bfbf6759fede482}{ArgsMode::ERR}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00162}00162\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00163}00163\ \ \ \ \ *filename\ =\ argv[*arg\_i];}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2ea2f453cfe638e57e27bb0c9512436111e}{ArgsMode::CONTINUE}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00165}00165\ \}}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00167}\mbox{\hyperlink{args__parser_8cpp_aae365b346de4655a4611300c60b63734}{00167}}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2e}{ArgsMode}}\ \mbox{\hyperlink{args__parser_8cpp_aae365b346de4655a4611300c60b63734}{enable\_voice}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_argument}{Argument}}\ args\_dict[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ args\_dict\_len,}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ arg\_i,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}*\ argv[],}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ auto\_level,\ ssize\_t*\ output\_cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ filename,\ \textcolor{keywordtype}{bool}*\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00170}00170\ \ \ \ \ (void)\ args\_dict;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00171}00171\ \ \ \ \ (void)\ args\_dict\_len;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00172}00172\ \ \ \ \ (void)\ arg\_i;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00173}00173\ \ \ \ \ (void)\ argc;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00174}00174\ \ \ \ \ (void)\ argv;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00175}00175\ \ \ \ \ (void)\ auto\_level;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00176}00176\ \ \ \ \ (void)\ output\_cnt;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00177}00177\ \ \ \ \ (void)\ filename;}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00179}00179\ \ \ \ \ assert(args\_dict);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00180}00180\ \ \ \ \ assert(arg\_i);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00181}00181\ \ \ \ \ assert(argc);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00182}00182\ \ \ \ \ assert(argv);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00183}00183\ \ \ \ \ assert(auto\_level);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00184}00184\ \ \ \ \ assert(output\_cnt);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00185}00185\ \ \ \ \ assert(filename);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00186}00186\ \ \ \ \ assert(voice);}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00188}00188\ \ \ \ \ *voice\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{args__parser_8h_a1f9b651227837e4a1479f53662e38d2ea2f453cfe638e57e27bb0c9512436111e}{ArgsMode::CONTINUE}};}
+\DoxyCodeLine{\Hypertarget{args__parser_8cpp_source_l00190}00190\ \}}
+
+\end{DoxyCode}

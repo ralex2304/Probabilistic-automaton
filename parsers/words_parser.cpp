@@ -1,4 +1,4 @@
-#include "automaton_parser.h"
+#include "words_parser.h"
 
 bool auto_parse(Vector* tokens, Nodes* nodes, int max_level) {
     assert(tokens);
@@ -12,6 +12,9 @@ bool auto_parse(Vector* tokens, Nodes* nodes, int max_level) {
 }
 
 bool auto_write_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level) {
+    assert(nodes);
+    assert(tokens_arr);
+
     nodes->all_cnt++;
 
     size_t i = 0;
@@ -51,14 +54,11 @@ bool auto_write_node(Nodes* nodes, char** tokens_arr, const unsigned int level, 
 }
 
 void auto_generate_rand_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level) {
-    static std::random_device rd;
+    assert(nodes);
+    assert(tokens_arr);
 
-    // Mersenne twister PRNG, initialized with seed from previous random device instance
-    static std::mt19937 gen(rd());
+    long long r = rand_normal_generate_ll(0, (long long)nodes->all_cnt);
 
-    std::uniform_int_distribution<unsigned long long> rand_normal {0, nodes->all_cnt};
-
-    long long r = (long long)rand_normal(gen);
     for (size_t i = 0; i < nodes->vec.size; i++) {
         r -= ((Node*)vec_get(&nodes->vec, i))->cnt;
         if (r <= 0) {
@@ -75,7 +75,6 @@ void auto_generate_rand_node(Nodes* nodes, char** tokens_arr, const unsigned int
 bool auto_get_node(Nodes* nodes, char** tokens_arr, const unsigned int level, const unsigned int max_level, const unsigned int rand_max_level) {
     assert(nodes);
     assert(tokens_arr);
-
 
     if (level == max_level) {
         auto_generate_rand_node(nodes, tokens_arr, max_level, rand_max_level);
@@ -101,41 +100,68 @@ bool auto_get_node(Nodes* nodes, char** tokens_arr, const unsigned int level, co
     return auto_get_node(&((Node*)vec_get(&nodes->vec, i))->children, tokens_arr, level + 1, max_level, rand_max_level);
 }
 
+Status::Statuses auto_generate_text(Nodes* nodes, const int level, ssize_t cnt, const bool voice) {
+    assert(nodes);
+
+    char** prev_tokens = (char**)calloc((level + 1), sizeof(char*));
+    if (prev_tokens == nullptr) {
+        printf("Memory alloc error\n");
+        return Status::MEMORY_EXCEED;
+    }
+
+    printf("---------- level %d ----------\n", level);
+
+    auto_get_node(nodes, prev_tokens, 0, 0, level);
+
+    int downgrade = 0;
+    while (--cnt > 0) {
+        for (ssize_t i = 0; i < level; i++)
+            prev_tokens[i] = prev_tokens[i + 1];
+
+        while (!auto_get_node(nodes, prev_tokens, 0, level, level) && --cnt > 0) {
+            downgrade++;
+            if (level < downgrade) downgrade = level;
+
+            auto_get_node(nodes, prev_tokens, 0, level - downgrade, level);
+
+            printf("%s ", prev_tokens[0]);
+            if (voice)
+                speak_add_token(prev_tokens[0]);
+
+            for (ssize_t i = 0; i < level; i++)
+                prev_tokens[i] = prev_tokens[i + 1];
+        }
+        printf("%s ", prev_tokens[0]);
+        if (voice)
+            speak_add_token(prev_tokens[0]);
+
+        downgrade = 0;
+    }
+    speak_add_token("", true);
+    printf("\n---------- stop ----------\n");
+
+    free(prev_tokens);
+
+    return Status::NORMAL_WORK;
+}
+
 void auto_detor(Nodes* nodes) {
+    assert(nodes);
+
     for (size_t i = 0; i < nodes->vec.size; i++) {
         auto_detor(&((Node*)vec_get(&nodes->vec, i))->children);
     }
     vec_detor(&nodes->vec);
 }
 
-Status::Statuses Status::raise(const Statuses status) {
-    switch (status) {
-        case NORMAL_WORK:
-            assert(0 && "Status::raise(): NORMAL_WORK mustn't be raised");
-            break;
-        case ARGS_ERROR:
-            printf("Exiting. Args error\n");
-            break;
-        case FILE_ERROR:
-            printf("Exiting. File error\n");
-            break;
-        case MEMORY_EXCEED:
-            printf("Exiting. Not enough memory\n");
-        case OK_EXIT:
-        case NO_ERR:
-            break;
-        default:
-            assert(0 && "Error::raise(): wrong error");
-            break;
-    };
-    return status;
+long long rand_normal_generate_ll(long long min, long long max) {
+    static std::random_device rd;
+
+    // Mersenne twister PRNG, initialized with seed from previous random device instance
+    static std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<long long> rand_normal {min, max};
+
+    return rand_normal(gen);
 }
 
-/*void speak_add(Vector* buf, char* add_token) {
-    buf->str[buf->size++] = ch;
-    if (buf->size >= buf->capacity - 1 || buf->str[buf->size - 1] == '\n') {
-        buf->str[buf->size] = '\0';
-        //txSpeak("<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='EN'>%s</speak>", buf->str);
-        buf->size = 0;
-    }
-}*/

@@ -9,14 +9,11 @@
  * @brief Specifies vector
  */
 struct Vector {
-    // TODO union
-
-
     size_t elem_size = 0; ///< one element size
     size_t capacity  = 2; ///< capacity of vector (used for memory allocation)
     size_t size      = 0; ///< actual number of elements in vector
 
-    void* arr = nullptr; ///< data array
+    void* arr = nullptr;  ///< data array
 };
 
 /**
@@ -56,6 +53,13 @@ bool vec_realloc(Vector* vec, size_t new_size);
  */
 bool vec_push(Vector* vec, void* elem);
 
+/**
+ * @brief Gets element from vector
+ *
+ * @param vec
+ * @param i index
+ * @return void*
+ */
 void* vec_get(Vector* vec, size_t i);
 
 #endif // #ifndef NODEVECTOR_H_

@@ -1,0 +1,61 @@
+\doxysection{cvector.\+cpp}
+\hypertarget{cvector_8cpp_source}{}\label{cvector_8cpp_source}\mbox{\hyperlink{cvector_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cvector_8h}{cvector.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00003}\mbox{\hyperlink{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}{00003}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}{vec\_ctor}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ vec,\ \textcolor{keywordtype}{size\_t}\ elem\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00004}00004\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00006}00006\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}}\ =\ elem\_size;}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00007}00007\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ calloc(vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}},\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00013}\mbox{\hyperlink{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}{00013}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}{vec\_detor}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ vec)\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00014}00014\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00016}00016\ \ \ \ \ free(vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}});}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00017}00017\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00018}00018\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00021}\mbox{\hyperlink{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}{00021}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}{vec\_realloc}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ vec,\ \textcolor{keywordtype}{size\_t}\ new\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00022}00022\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordtype}{void}*\ ptr\ =\ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00026}00026\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ (\textcolor{keywordtype}{void}*)realloc(vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}},\ new\_size\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ free(ptr);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00032}00032\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ =\ new\_size;}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00036}\mbox{\hyperlink{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}{00036}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}{vec\_push}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ vec,\ \textcolor{keywordtype}{void}*\ elem)\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00037}00037\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00038}00038\ \ \ \ \ assert(elem);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ >=\ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ \&\&}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}{vec\_realloc}}(vec,\ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ *\ 2))\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00045}00045\ \ \ \ \ memcpy((\textcolor{keywordtype}{char}*)vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ +\ vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}},\ elem,\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00046}00046\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}++;}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00051}\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{00051}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ vec,\ \textcolor{keywordtype}{size\_t}\ i)\ \{}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00052}00052\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00053}00053\ \ \ \ \ assert(i\ <\ vec-\/>size);}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{char}*)vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ +\ i\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}};}
+\DoxyCodeLine{\Hypertarget{cvector_8cpp_source_l00056}00056\ \}}
+
+\end{DoxyCode}

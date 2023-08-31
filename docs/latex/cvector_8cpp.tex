@@ -1,0 +1,250 @@
+\doxysection{cvector.\+cpp File Reference}
+\hypertarget{cvector_8cpp}{}\label{cvector_8cpp}\index{cvector.cpp@{cvector.cpp}}
+{\ttfamily \#include \"{}cvector.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}{vec\+\_\+ctor}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec, size\+\_\+t elem\+\_\+size)
+\begin{DoxyCompactList}\small\item\em \doxylink{struct_vector}{Vector} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}{vec\+\_\+detor}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec)
+\begin{DoxyCompactList}\small\item\em Node\+Vector destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}{vec\+\_\+realloc}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec, size\+\_\+t new\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Node\+Vector memory reallocation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}{vec\+\_\+push}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec, void \texorpdfstring{$\ast$}{*}elem)
+\begin{DoxyCompactList}\small\item\em Push to Node\+Vector. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\+\_\+get}} (\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}vec, size\+\_\+t i)
+\begin{DoxyCompactList}\small\item\em Gets element from vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}\label{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd} 
+\index{cvector.cpp@{cvector.cpp}!vec\_ctor@{vec\_ctor}}
+\index{vec\_ctor@{vec\_ctor}!cvector.cpp@{cvector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_ctor()}{vec\_ctor()}}
+{\footnotesize\ttfamily bool vec\+\_\+ctor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{size\+\_\+t}]{elem\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+\doxylink{struct_vector}{Vector} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em elem\+\_\+size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cvector_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{cvector_8cpp_source}{cvector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}}\ =\ elem\_size;}
+\DoxyCodeLine{00007\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ calloc(vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}},\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00011\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, \mbox{\hyperlink{cvector_8h_source_l00013}{Vector\+::capacity}}, and \mbox{\hyperlink{cvector_8h_source_l00012}{Vector\+::elem\+\_\+size}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}, and \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+\Hypertarget{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}\label{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39} 
+\index{cvector.cpp@{cvector.cpp}!vec\_detor@{vec\_detor}}
+\index{vec\_detor@{vec\_detor}!cvector.cpp@{cvector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_detor()}{vec\_detor()}}
+{\footnotesize\ttfamily void vec\+\_\+detor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec }\end{DoxyParamCaption})}
+
+
+
+Node\+Vector destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{cvector_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{cvector_8cpp_source}{cvector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00014\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ free(vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}});}
+\DoxyCodeLine{00017\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00018\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ =\ 0;}
+\DoxyCodeLine{00019\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, and \mbox{\hyperlink{cvector_8h_source_l00013}{Vector\+::capacity}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00148}{auto\+\_\+detor()}}.
+
+\Hypertarget{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}\label{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3} 
+\index{cvector.cpp@{cvector.cpp}!vec\_get@{vec\_get}}
+\index{vec\_get@{vec\_get}!cvector.cpp@{cvector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_get()}{vec\_get()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} vec\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Gets element from vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em i} & index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cvector_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{cvector_8cpp_source}{cvector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{00053\ \ \ \ \ assert(i\ <\ vec-\/>size);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{char}*)vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ +\ i\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}};}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, and \mbox{\hyperlink{cvector_8h_source_l00012}{Vector\+::elem\+\_\+size}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00148}{auto\+\_\+detor()}}, \mbox{\hyperlink{words__parser_8cpp_source_l00056}{auto\+\_\+generate\+\_\+rand\+\_\+node()}}, \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}, and \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
+
+\Hypertarget{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}\label{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611} 
+\index{cvector.cpp@{cvector.cpp}!vec\_push@{vec\_push}}
+\index{vec\_push@{vec\_push}!cvector.cpp@{cvector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_push()}{vec\_push()}}
+{\footnotesize\ttfamily bool vec\+\_\+push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{void \texorpdfstring{$\ast$}{*}}]{elem }\end{DoxyParamCaption})}
+
+
+
+Push to Node\+Vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em elem} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cvector_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{cvector_8cpp_source}{cvector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{00038\ \ \ \ \ assert(elem);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ >=\ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ \&\&}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}{vec\_realloc}}(vec,\ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ *\ 2))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ memcpy((\textcolor{keywordtype}{char}*)vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ +\ vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}},\ elem,\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{00046\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}++;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, \mbox{\hyperlink{cvector_8h_source_l00013}{Vector\+::capacity}}, \mbox{\hyperlink{cvector_8h_source_l00012}{Vector\+::elem\+\_\+size}}, \mbox{\hyperlink{cvector_8h_source_l00014}{Vector\+::size}}, and \mbox{\hyperlink{cvector_8cpp_source_l00021}{vec\+\_\+realloc()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}, and \mbox{\hyperlink{main_8cpp_source_l00015}{main()}}.
+
+\Hypertarget{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae}\label{cvector_8cpp_a4aa4ed7d6571e4fce8ec734c4aaec3ae} 
+\index{cvector.cpp@{cvector.cpp}!vec\_realloc@{vec\_realloc}}
+\index{vec\_realloc@{vec\_realloc}!cvector.cpp@{cvector.cpp}}
+\doxysubsubsection{\texorpdfstring{vec\_realloc()}{vec\_realloc()}}
+{\footnotesize\ttfamily bool vec\+\_\+realloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vector}{Vector}} \texorpdfstring{$\ast$}{*}}]{vec,  }\item[{size\+\_\+t}]{new\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Node\+Vector memory reallocation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & \\
+\hline
+{\em new\+\_\+size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true success 
+
+false failure 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cvector_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{cvector_8cpp_source}{cvector.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ assert(vec);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}*\ ptr\ =\ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ =\ (\textcolor{keywordtype}{void}*)realloc(vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}},\ new\_size\ *\ vec-\/>\mbox{\hyperlink{struct_vector_a4608ecc4969017b7d07b3206b44e80cd}{elem\_size}});}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (vec-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}}\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ free(ptr);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ vec-\/>\mbox{\hyperlink{struct_vector_ad2b86d50e94fbaae2cc65a320b092b0a}{capacity}}\ =\ new\_size;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{cvector_8h_source_l00016}{Vector\+::arr}}, \mbox{\hyperlink{cvector_8h_source_l00013}{Vector\+::capacity}}, and \mbox{\hyperlink{cvector_8h_source_l00012}{Vector\+::elem\+\_\+size}}.
+
+
+
+Referenced by \mbox{\hyperlink{cvector_8cpp_source_l00036}{vec\+\_\+push()}}.
+

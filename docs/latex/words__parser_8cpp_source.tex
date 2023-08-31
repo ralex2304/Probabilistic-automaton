@@ -1,0 +1,173 @@
+\doxysection{words\+\_\+parser.\+cpp}
+\hypertarget{words__parser_8cpp_source}{}\label{words__parser_8cpp_source}\index{parsers/words\_parser.cpp@{parsers/words\_parser.cpp}}
+\mbox{\hyperlink{words__parser_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{words__parser_8h}{words\_parser.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00003}\mbox{\hyperlink{words__parser_8cpp_a41c208ab6781e36d191e8dbddd3280c5}{00003}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8cpp_a41c208ab6781e36d191e8dbddd3280c5}{auto\_parse}}(\mbox{\hyperlink{struct_vector}{Vector}}*\ tokens,\ \mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00004}00004\ \ \ \ \ assert(tokens);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00005}00005\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ tokens-\/>\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}}\ -\/\ max\_level;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00008}00008\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(nodes,\ (\textcolor{keywordtype}{char}**)(tokens-\/>\mbox{\hyperlink{struct_vector_a2583901b4b7b9a816d2ab3ff796b4f1e}{arr}})\ +\ i,\ 0,\ max\_level))}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00010}00010\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00014}\mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{00014}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00015}00015\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00016}00016\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00018}00018\ \ \ \ \ nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}}++;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(tokens\_arr[level]);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ node\_token\_len\ =\ strlen(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_token\_len\ ==\ token\_len\ \&\&}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},i))-\/>hash\ ==\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(tokens\_arr[level],\ (\textcolor{keywordtype}{int})token\_len)\ \&\&}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ strncmp(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token,\ tokens\_arr[level],\ node\_token\_len))}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}})\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_node}{Node}}\ new\_node\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}}\ =\ tokens\_arr[level];}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a00ecb32021c32109fdae8d5988bb9103}{hash}}\ =\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(new\_node.\mbox{\hyperlink{struct_node_a8ffba55410bdf8395315fdfb91c48dda}{token}},\ (\textcolor{keywordtype}{int})token\_len);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ new\_node.\mbox{\hyperlink{struct_node_a952442a5928b3c3efbb0b22232c91761}{cnt}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{cvector_8cpp_aa318dfc860d92820601b57421c75e2bd}{vec\_ctor}}(\&new\_node.\mbox{\hyperlink{struct_node_a905a5389cfeff540cb300db0811af57c}{children}}.\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_node}{Node}})))\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_write\_node():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{cvector_8cpp_a796cd548dad13a2fb99a60b07aa58611}{vec\_push}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ \&new\_node))\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}auto\_write\_node():\ Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00046}00046\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>cnt++;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{words__parser_8cpp_a90be85b0e1f2ba78bf5e7af69c03244e}{auto\_write\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00056}\mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{00056}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00057}00057\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00058}00058\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ r\ =\ \mbox{\hyperlink{words__parser_8cpp_ab6714abfee5636bd29edf5bf3766e263}{rand\_normal\_generate\_ll}}(0,\ (\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long})nodes-\/>\mbox{\hyperlink{struct_nodes_ad3a073798be20aa5133c62da1975e947}{all\_cnt}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ r\ -\/=\ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>cnt;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ tokens\_arr[level]\ =\ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ max\_level)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00072}00072\ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}Rand\ node\ generate\ error"{}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00075}\mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{00075}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keywordtype}{char}**\ tokens\_arr,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ max\_level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rand\_max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00076}00076\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00077}00077\ \ \ \ \ assert(tokens\_arr);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ ==\ max\_level)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ac43f65c1c54ec580194b067f2022cbcd}{auto\_generate\_rand\_node}}(nodes,\ tokens\_arr,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordtype}{char}*\ token\ =\ tokens\_arr[level];}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ token\_len\ =\ strlen(token);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ node\_token\_len\ =\ strlen(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node\_token\_len\ ==\ token\_len\ \&\&}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>hash\ ==\ \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{MurmurHash2A}}(token,\ (\textcolor{keywordtype}{int})token\_len)\ \&\&}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ strncmp(((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>token,\ token,\ node\_token\_len))}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}})\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children,\ tokens\_arr,\ level\ +\ 1,\ max\_level,\ rand\_max\_level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00103}\mbox{\hyperlink{words__parser_8cpp_abba9a975dcd121a8c26904abe6706b5b}{00103}}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604c}{Status::Statuses}}\ \mbox{\hyperlink{words__parser_8cpp_abba9a975dcd121a8c26904abe6706b5b}{auto\_generate\_text}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ level,\ ssize\_t\ cnt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ voice)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00104}00104\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordtype}{char}**\ prev\_tokens\ =\ (\textcolor{keywordtype}{char}**)calloc((level\ +\ 1),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*));}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\_tokens\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Memory\ alloc\ error\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604cab31aa3b714185adf0908d38f4b44f9a7}{Status::MEMORY\_EXCEED}};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00112}00112\ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ level\ \%d\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}},\ level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ 0,\ level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{int}\ downgrade\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{while}\ (-\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ level;\ i++)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ prev\_tokens[i]\ =\ prev\_tokens[i\ +\ 1];}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ level,\ level)\ \&\&\ -\/-\/cnt\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ downgrade++;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (level\ <\ downgrade)\ downgrade\ =\ level;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_aa17f7f2eeec2118989f7e4f24a065f3b}{auto\_get\_node}}(nodes,\ prev\_tokens,\ 0,\ level\ -\/\ downgrade,\ level);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ prev\_tokens[0]);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (voice)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(prev\_tokens[0]);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ level;\ i++)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prev\_tokens[i]\ =\ prev\_tokens[i\ +\ 1];}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\ "{}},\ prev\_tokens[0]);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (voice)}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(prev\_tokens[0]);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ downgrade\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00140}00140\ \ \ \ \ \mbox{\hyperlink{voiceover_8cpp_a73ece497b7a65fabccf35ad634ff4971}{speak\_add\_token}}(\textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00141}00141\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ stop\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00143}00143\ \ \ \ \ free(prev\_tokens);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_status_ab31bb94cc29a302cab703638615b604ca7f9c6609a744cdaac1a9e27306d8f8b0}{Status::NORMAL\_WORK}};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00146}00146\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00148}\mbox{\hyperlink{words__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{00148}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{words__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\mbox{\hyperlink{struct_nodes}{Nodes}}*\ nodes)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00149}00149\ \ \ \ \ assert(nodes);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}}.\mbox{\hyperlink{struct_vector_ae4665570b1b91f783645fa0e2eb884af}{size}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{words__parser_8cpp_ae7b6f0044aa40c8b8d9c0de7fbc0e7e6}{auto\_detor}}(\&((\mbox{\hyperlink{struct_node}{Node}}*)\mbox{\hyperlink{cvector_8cpp_a1f0b1988997e3fc3bfdc7db2de9e43d3}{vec\_get}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}},\ i))-\/>children);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00154}00154\ \ \ \ \ \mbox{\hyperlink{cvector_8cpp_aa5a5e597942a56ec9ad09489235e8d39}{vec\_detor}}(\&nodes-\/>\mbox{\hyperlink{struct_nodes_a6525b279240091ee336048bfd7d0da54}{vec}});}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00155}00155\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00157}\mbox{\hyperlink{words__parser_8cpp_ab6714abfee5636bd29edf5bf3766e263}{00157}}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{words__parser_8cpp_ab6714abfee5636bd29edf5bf3766e263}{rand\_normal\_generate\_ll}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ min,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ max)\ \{}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keyword}{static}\ std::random\_device\ rd;}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{comment}{//\ Mersenne\ twister\ PRNG,\ initialized\ with\ seed\ from\ previous\ random\ device\ instance}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{static}\ std::mt19937\ gen(rd());}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00163}00163\ \ \ \ \ std::uniform\_int\_distribution<long\ long>\ rand\_normal\ \{min,\ max\};}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{return}\ rand\_normal(gen);}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{words__parser_8cpp_source_l00167}00167\ }
+
+\end{DoxyCode}

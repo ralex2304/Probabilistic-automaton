@@ -1,0 +1,120 @@
+\doxysection{hash.\+cpp File Reference}
+\hypertarget{hash_8cpp}{}\label{hash_8cpp}\index{hash.cpp@{hash.cpp}}
+{\ttfamily \#include \"{}hash.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e}{mmix}} (unsigned int \texorpdfstring{$\ast$}{*}h, unsigned int \texorpdfstring{$\ast$}{*}k, const int r, const unsigned int m)
+\item 
+unsigned int \mbox{\hyperlink{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}{Murmur\+Hash2A}} (const void \texorpdfstring{$\ast$}{*}key, int len)
+\begin{DoxyCompactList}\small\item\em Generates Mur\+Mur hash2A. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e}\label{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e} 
+\index{hash.cpp@{hash.cpp}!mmix@{mmix}}
+\index{mmix@{mmix}!hash.cpp@{hash.cpp}}
+\doxysubsubsection{\texorpdfstring{mmix()}{mmix()}}
+{\footnotesize\ttfamily void mmix (\begin{DoxyParamCaption}\item[{unsigned int \texorpdfstring{$\ast$}{*}}]{h,  }\item[{unsigned int \texorpdfstring{$\ast$}{*}}]{k,  }\item[{const int}]{r,  }\item[{const unsigned int}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{hash_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{hash_8cpp_source}{hash.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00004\ \ \ \ \ *k\ *=\ m;}
+\DoxyCodeLine{00005\ \ \ \ \ *k\ \string^=\ *k\ >>\ r;}
+\DoxyCodeLine{00006\ \ \ \ \ *k\ *=\ m;}
+\DoxyCodeLine{00007\ \ \ \ \ *h\ *=\ m;}
+\DoxyCodeLine{00008\ \ \ \ \ *h\ \string^=\ *k;}
+\DoxyCodeLine{00009\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{hash_8cpp_source_l00011}{Murmur\+Hash2\+A()}}.
+
+\Hypertarget{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb}\label{hash_8cpp_a39c68ae04033ada1df08ea5ee887e9bb} 
+\index{hash.cpp@{hash.cpp}!MurmurHash2A@{MurmurHash2A}}
+\index{MurmurHash2A@{MurmurHash2A}!hash.cpp@{hash.cpp}}
+\doxysubsubsection{\texorpdfstring{MurmurHash2A()}{MurmurHash2A()}}
+{\footnotesize\ttfamily unsigned int Murmur\+Hash2A (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{key,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Generates Mur\+Mur hash2A. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & data \\
+\hline
+{\em len} & data len \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{hash_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{hash_8cpp_source}{hash.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ assert(key);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ seed\ =\ 236002;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ m\ =\ 0x5bd1e995;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ r\ =\ 24;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ l\ =\ len;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ data\ =\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ key;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ h\ =\ seed;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ k\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{while}(len\ >=\ 4)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ k\ \ =\ data[0];}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ k\ |=\ data[1]\ <<\ 8;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ k\ |=\ data[2]\ <<\ 16;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ k\ |=\ data[3]\ <<\ 24;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e}{mmix}}(\&h,\ \&k,\ r,\ m);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ data\ +=\ 4;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ len\ -\/=\ 4;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ t\ =\ 0;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{switch}(len)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ t\ \string^=\ data[2]\ <<\ 16;\ [[fallthrough]];}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ t\ \string^=\ data[1]\ <<\ 8;\ \ [[fallthrough]];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ t\ \string^=\ data[0];\ \ \ \ \ \ \ [[fallthrough]];}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ assert(0\ \&\&\ \textcolor{stringliteral}{"{}len\ >=\ 4"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e}{mmix}}(\&h,\ \&t,\ r,\ m);}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{hash_8cpp_ab5c01cc7eeaf800835efd8aa96c8a91e}{mmix}}(\&h,\ \&l,\ r,\ m);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ h\ \string^=\ h\ >>\ 13;}
+\DoxyCodeLine{00052\ \ \ \ \ h\ *=\ m;}
+\DoxyCodeLine{00053\ \ \ \ \ h\ \string^=\ h\ >>\ 15;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ h;}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{hash_8cpp_source_l00003}{mmix()}}.
+
+
+
+Referenced by \mbox{\hyperlink{words__parser_8cpp_source_l00075}{auto\+\_\+get\+\_\+node()}}, and \mbox{\hyperlink{words__parser_8cpp_source_l00014}{auto\+\_\+write\+\_\+node()}}.
+

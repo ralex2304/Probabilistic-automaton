@@ -12,6 +12,6 @@
  * @param str
  * @return char*
  */
-char* my_strtok(char* str);
+char* my_strtok(const char* str);
 
 #endif // #ifndef MY_STRING_H_

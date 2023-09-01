@@ -1,20 +1,25 @@
-#define TX_COMPILED
-#define TX_USE_SPEAK
-#include <TXLib.h>
+//#define TX_COMPILED
+//#define TX_USE_SPEAK
+//#include <TXLib.h>
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <random>
 
 #include "cvector.h"
 #include "args_parser.h"
 #include "file.h"
 
+#define PARSER_CHARS
+
+#ifdef PARSER_CHARS
+#include "parsers/chars_parser.h"
+#else // #ifndef PARSER_CHARS
 #include "parsers/words_parser.h"
+#endif // #ifdef PARSER_CHARS
 
 int main(int argc, char* argv[]) {
-    txSetLocale ();
-    txDisableAutoPause();
+    //txSetLocale();
+    //txDisableAutoPause();
 
     /// Console args parse
     int level = 4;
@@ -40,17 +45,16 @@ int main(int argc, char* argv[]) {
     /// File reading end
 
     /// Text parsing
-    Nodes nodes = {};
-    vec_ctor(&nodes.vec, sizeof(Node));
+#ifdef PARSER_CHARS
+    CharNodesVector nodes = {};
+    vec_ctor(&nodes.vec, sizeof(CharNode));
+#else
+    WordNodesVector nodes = {};
+    vec_ctor(&nodes.vec, sizeof(WordNode));
+#endif
 
-    Vector tokens = {};
-    vec_ctor(&tokens, sizeof(char*));
 
-    char* new_token = my_strtok(text);
-    while ((new_token = my_strtok(nullptr)) != nullptr)
-        vec_push(&tokens, &new_token);
-
-    if (!auto_parse(&tokens, &nodes, level))
+    if (!auto_parse(text, &nodes, level))
         return Status::raise(Status::MEMORY_EXCEED);
     /// Text parsing end
 
@@ -60,6 +64,7 @@ int main(int argc, char* argv[]) {
 
     auto_detor(&nodes);
     free(text);
+    text = nullptr;
 
     return Status::raise(Status::OK_EXIT);
 }

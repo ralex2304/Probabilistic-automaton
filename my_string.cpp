@@ -1,10 +1,10 @@
 #include "my_string.h"
 
-char* my_strtok(char* input) {
+char* my_strtok(const char* input) {
     static char* str = nullptr;
 
     if (input != nullptr)
-        str = input;
+        str = const_cast<char*>(input);
 
     if (str == nullptr)
         return nullptr;

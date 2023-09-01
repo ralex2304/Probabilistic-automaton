@@ -1,10 +1,6 @@
 #ifndef VOICEOVER_H_
 #define VOICEOVER_H_
 
-#define TX_COMPILED
-#define TX_USE_SPEAK
-#include <TXLib.h>
-
 #include <assert.h>
 #include <string.h>
 
@@ -16,5 +12,18 @@
  * @param speak_all
  */
 void speak_add_token(const char* add_token, const bool speak_all = false);
+
+/**
+ * @brief speak_add_token() wrapper for chars
+ *
+ * @param ch char
+ * @param speak_all
+ */
+inline void speak_add_char(const char ch, const bool speak_all = false) {
+    char buf[2] = " ";
+    buf[0] = ch;
+
+    speak_add_token(buf, speak_all);
+}
 
 #endif // #ifndef VOICEOVER_H_

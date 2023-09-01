@@ -13,24 +13,22 @@ CFLAGS= -fdiagnostics-color=always -Wshadow -Winit-self -Wredundant-decls -Wcast
 BUILD_DIR = build
 DOCS_DIR = docs
 NON_CODE_DIRS = $(BUILD_DIR) $(DOCS_DIR) .vscode .git
-TARGET = main.exe
+TARGET = main
 
 
-CD = $(shell cd)
+CD = $(shell pwd)
 DOCS_TARGET=$(DOCS_DIR)\\docs_generated
 
 
 
-NESTED_CODE_DIRS_CD = $(shell dir /S /B /AD | findstr /V /I "$(NON_CODE_DIRS)")
-NESTED_CODE_DIRS = $(NESTED_CODE_DIRS_CD:$(CD)\\%=%)
+NESTED_CODE_DIRS_CD = $(shell find -maxdepth 3 -type d $(NON_CODE_DIRS:%=! -path "*%*"))
+NESTED_CODE_DIRS = $(NESTED_CODE_DIRS_CD:.%=%)
 
+FILES_FULL = $(shell find . -name "*.cpp")
+FILES = $(FILES_FULL:.%=%)
 
-
-FILES_FULL = $(shell dir /s /a /b *.cpp)
-FILES = $(FILES_FULL:$(CD)\\%=%)
-
-MAKE_DIRS = $(NESTED_CODE_DIRS:%=$(BUILD_DIR)\\%)
-OBJ = $(FILES:%=$(BUILD_DIR)\\%)
+MAKE_DIRS = $(NESTED_CODE_DIRS:%=$(BUILD_DIR)%)
+OBJ = $(FILES:%=$(BUILD_DIR)%)
 DEPENDS = $(OBJ:%.cpp=%.d)
 OBJECTS = $(OBJ:%.cpp=%.o)
 
@@ -40,14 +38,14 @@ $(TARGET): $(OBJECTS)
 	@$(CC) $^ -o $@
 
 $(BUILD_DIR):
-	@if not exist $@ md $@
+	@mkdir $@
 
 $(MAKE_DIRS): | $(BUILD_DIR)
-	@if not exist $@ md $@
+	@mkdir $@
 
 -include $(DEPENDS)
 
-$(BUILD_DIR)\\%.o: %.cpp | $(MAKE_DIRS)
+$(BUILD_DIR)/%.o: %.cpp | $(MAKE_DIRS)
 	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 .PHONY: doxygen dox
@@ -59,11 +57,11 @@ $(DOCS_TARGET): $(FILES) | $(DOCS_DIR)
 	@doxygen.exe docs/Doxyfile
 
 $(DOCS_DIR):
-	@if not exist $@ md $@
+	@mkdir $@
 
 clean:
-	@del *.o /a /s
-	@del *.d /a /s
-	@del $(TARGET)
-	@del $(DOCS_TARGET)
+	@find . -name '*.o' -delete
+	@find . -name '*.d' -delete
+	@find . -name '$(TARGET)' -delete
+	@find . -name '$(DOCS_TARGET)' -delete
 
